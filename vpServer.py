@@ -6,7 +6,7 @@ import time, sys
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 serverRunning = True
 ip = str(socket.gethostbyname(socket.gethostname()))
-port = 1234
+port = 8000
 
 clients = {}
 
@@ -32,7 +32,8 @@ def handleClient(client, uname):
             found = False
             print('this is the message im getting' + msg)
             if '**broadcast' in msg:
-                msg = msg.replace('**broadcast','')
+                ticks = time.time()
+                msg = (uname + ',' + str(ticks))
                 for k,v in clients.items():
                     v.send(msg.encode('ascii'))
             elif '**quit' in msg:
@@ -46,14 +47,10 @@ def handleClient(client, uname):
                 for name in keys:
                     if('**'+name) in msg:
                         ticks = time.time()
-                        if name != 'touch':
-                            msg = msg.replace('**'+name, ','+str(ticks) )
-                        else:
-                            temp_msg = msg.replace('**'+name, ',' +str(ticks) )
-                            msg = msg.replace('**'+name, '')
+                            msg = msg.replace('**'+name, str(ticks) +',')
                             print(msg)
                             #csv_writer(temp_msg, path)
-                        print('this name is ', name)
+                        #print('this name is ', name)
                         clients.get(name).send(msg.encode('ascii'))
                         found = True
                 if(not found):
@@ -62,11 +59,6 @@ def handleClient(client, uname):
             clients.pop(uname)
             print(uname + ' has been logged out')
             clientConnected = False
-
-
-
-
-
 
 while serverRunning:
     client, address = s.accept()
