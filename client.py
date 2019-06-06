@@ -5,13 +5,12 @@ import sys, csv
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 port = 8000
-
-
 uname = str(sys.argv[2])
-
 ip = str(sys.argv[1])
 s.connect((ip, port))
 s.send(uname.encode('ascii'))
+sync_steps = 2
+delay_time = 0
 
 def csv_writer(data, path):
     with open(path, "a", newline = '') as csv_file:
