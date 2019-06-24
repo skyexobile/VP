@@ -1,4 +1,4 @@
-from subprocess import Popen, PIPE
+from subprocess import Popen, PIPE, time
 
 scpt = '''
 tell application "System Events"
@@ -13,5 +13,5 @@ args = ['2', '2']
 
 p = Popen(['osascript', '-'], stdin=PIPE, stdout=PIPE, stderr=PIPE, universal_newlines=True)
 stdout, stderr = p.communicate(scpt)
-
-print (p.returncode, stdout, stderr)
+recording_time = time.time()
+print ("screen recording...", recording_time)

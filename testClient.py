@@ -1,4 +1,4 @@
-import serial, datetime, time, re, pickle, os, select, sys, csv
+import serial, datetime, time, re, pickle, os, select, sys, csv, threading
 import numpy as np
 from time import gmtime, strftime
 import socket
@@ -10,29 +10,26 @@ import csv
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 port = 8000
 
-
 uname = str(sys.argv[2])
 
 ip = str(sys.argv[1])
 s.connect((ip, port))
 s.send(uname.encode('ascii'))
-
 print("Connecting to Touch Input")
-input_serial = serial.Serial('/dev/cu.usbmodem1421')
-input_serial.setBaudrate(115200)
+input_serial = serial.Serial('/dev/cu.usbmodem14101')
+input_serial.baudrate =115200
 input_serial.setDTR(False)
 input_serial.setRTS(False)
-
-print("Connecting to Touch Output")
-output_serial = serial.Serial('/dev/cu.usbmodem1411')
-output_serial.setBaudrate(115200)
-
-output_serial.setDTR(False)
-output_serial.setRTS(False)
 
 
 
 print("Connected!")
+
+#server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+#IP_address = str(sys.argv[1])
+#Port = int(sys.argv[2])server.connect(("localhost", 5000))
+
 soft_value = 100
 medium_value = 500
 hard_value = 1000
@@ -41,13 +38,32 @@ acquired_flag = False
 previous_read = -100
 offset = 0
 
+
+
+
+
+
+
+
+'''
+
+print("Connecting to Touch Output")
+output_serial = serial.Serial('/dev/cu.usbmodem1411')
+output_serial.setBaudrate(115200)
+
+output_serial.setDTR(False)
+output_serial.setRTS(False)
+
+'''
+
 def record():
-    scpt = '''
+    scpt ='''
     tell application "System Events"
     	keystroke "%" using command down
     	delay 1.0
     	keystroke return
-    end tell'''
+    end tell
+    '''
 
 
     args = ['2', '2']
@@ -232,28 +248,24 @@ def save_settings():
         hard_value = temp
     medium_value = med_value
     print("Your settings have been saved!")
-    '''print("soft is ", soft_value)
+    print("soft is ", soft_value)
     print("medium is ", medium_value)
     print("hard is ", hard_value)
-    '''
+
 
 reset_button =  tk.Button(root, text = "Reset Sensor", command = reset)
 soft_button =  tk.Button(root, text = "Define Soft", command = set_soft)
 medium_button =  tk.Button(root, text = "Define Medium", command = set_medium)
 hard_button  =  tk.Button(root, text = "Define Hard", command = set_hard)
 save_button  =  tk.Button(root, text = "Save Settings", command = save_settings)
-playback_button  =  tk.Button(root, text = "Activate Device", command = generate)
-sample_button= tk.Button(root, text = "Sample Squeezes", command = sample)
 
 reset_button.pack(side = tk.BOTTOM)
 soft_button.pack(side = tk.BOTTOM)
 medium_button.pack(side = tk.BOTTOM)
 hard_button.pack(side = tk.BOTTOM)
 save_button.pack(side = tk.BOTTOM)
-playback_button.pack()
-sample_button.pack()
 
-root.update()
+#root.update()
 def csv_writer(data, path):
     with open(path, "a", newline = '') as csv_file:
         #writer = csv.writer(csv_file, delimiter = ' ')
@@ -263,9 +275,11 @@ def csv_writer(data, path):
 clientRunning = True
 #path = "DataFiles/" + str(subID)+ "/touch_data.csv"
 #f = open(path,'a')
+
 def receiveMsg(sock):
     serverDown = False
     while clientRunning and (not serverDown):
+
         try:
             msg = sock.recv(1024).decode('ascii')
             if '**send' in msg:
@@ -279,50 +293,45 @@ def receiveMsg(sock):
             #csv_writer(msg, path)
             elif 'soft' in msg:
                 print("soft squeeze")
-                output_serial.write(str('B').encode())
-                output_serial.readline().decode()
+                #output_serial.write(str('B').encode())
+                #output_serial.readline().decode()
             elif 'medium' in msg:
                 print("medium squeeze")
-                output_serial.write(str('E').encode())
-                output_serial.readline().decode()
+                #output_serial.write(str('E').encode())
+                #output_serial.readline().decode()
             elif 'hard' in msg:
                 print("hardsqueeze")
-                output_serial.write(str('H').encode())
-                output_serial.readline().decode()
-            print('messaged receive is ' +msg)
+                #output_serial.write(str('H').encode())
+                #output_serial.readline().decode()
+            #print('message received is ' +msg)
 
         except:
             print('Server is Down. You are now Disconnected. Press enter to exit...')
             serverDown = True
 
 threading.Thread(target = receiveMsg, args = (s,)).start()
-while clientRunning:
-    root.update()
-    # a.encode('utf-8').strip()
-    value = (input_serial.readline().decode())
-    try:
-        input_value = float(value) + offset
-    except:
-        value = (input_serial.readline().decode())
-        input_value = float(value) + offset
 
-    if input_value <-3:
-        offset = offset -input_value
-        try:
-            input_value = float(value) + offset
-        except:
-            value = (input_serial.readline().decode())
-            input_value = float(value) + offset
-    if input_value >= soft_value and < medium_value:
+while clientRunning:
+    #root.update()
+    # a.encode('utf-8').strip()
+    #print('A')
+    #print('input value is ', input_value)
+    print('first test')
+
+    value = (input_serial.readline().decode())
+    input_value = float(value)
+    print(input_value)
+    print('testB')
+    if input_value >= soft_value and input_value < medium_value:
         tempMsg = 'soft'
-    elif input_value >= medium_value and < hard_value:
+    elif input_value >= medium_value and input_value < hard_value:
         tempMsg = 'medium'
     elif input_value >= hard_value:
         tempMsg = 'hard'
     else:
         tempMsg = ''
 
-    msg = uname + '>>' + tempMsg
+    msg = '**' +uname + '>>' + tempMsg
     if '**quit' in msg:
         clientRunning = False
         s.send('**quit'.encode('ascii'))

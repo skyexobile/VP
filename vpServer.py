@@ -47,8 +47,9 @@ def handleClient(client, uname):
                 for name in keys:
                     if('**'+name) in msg:
                         ticks = time.time()
-                            msg = msg.replace('**'+name, str(ticks) +',')
-                            print(msg)
+                        msg = msg.replace('**'+name, '')
+                        msg = msg + (',' + str(ticks))
+                        print(msg)
                             #csv_writer(temp_msg, path)
                         #print('this name is ', name)
                         clients.get(name).send(msg.encode('ascii'))
