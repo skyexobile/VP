@@ -56,7 +56,9 @@ def sent_replay():
                         clip = me.VideoFileClip(f_name)
                 #clip = clip.resize(0.5)
                 #clip = clip.subclip(float(start_time)-1.0, float(stop_time) +1.0)
-                        clip = clip.subclip(float(start_time), float(end_time))
+                        st = float(start_time)
+                        et = float(end_time)
+                        clip = clip.subclip((st - 0.5), (et+ 0.5))
                         clip.write_videofile(("Sent/Smovie" + str(smcounter) +".webm"), audio=True) # default codec: 'libx264', 24 fps
                 print('New Clip Generated')
                 smcounter+=1
@@ -112,7 +114,9 @@ def recv_replay():
                         clip = me.VideoFileClip(f_name)
                 #clip = clip.resize(0.5)
                 #clip = clip.subclip(float(start_time)-1.0, float(stop_time) +1.0)
-                        clip = clip.subclip(float(start_time), float(end_time))
+                        st = float(start_time)
+                        et = float(end_time)
+                        clip = clip.subclip((st - 0.5), (et+ 0.5))
                         clip.write_videofile(("Received/Rmovie" + str(rmcounter) +".webm"), audio=True) # default codec: 'libx264', 24 fps
                 print('New Clip Generated')
                 rmcounter+=1

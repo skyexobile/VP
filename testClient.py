@@ -24,6 +24,11 @@ input_serial.baudrate =115200
 input_serial.setDTR(False)
 input_serial.setRTS(False)
 
+output_serial = serial.Serial('/dev/cu.usbmodem14101')
+
+output_serial.baudrate =115200
+output_serial.setDTR(False)
+output_serial.setRTS(False)
 
 
 print("Connected!")
@@ -254,11 +259,11 @@ def save_settings():
 
 def save_sent():
     global sent_list
-    csv_writer(sent_list, 'sent_data.csv')
+    csv_writer(sent_list, 'Sent/sent_data.csv')
     print('done')
 def save_recv():
     global recv_list
-    csv_writer(recv_list, 'received_data.csv')
+    csv_writer(recv_list, 'Received/received_data.csv')
     print('done')
 reset_button =  tkin.Button(root, text = "Reset Sensor", command = reset)
 soft_button =  tkin.Button(root, text = "Define Soft", command = set_soft)
@@ -307,36 +312,43 @@ def receiveMsg(sock):
                 #print('video recording time is ', recording_time)
             #csv_writer(msg, path)
             elif 'soft' in msg:
-                #print("soft squeeze REceived")
-                #output_serial.write(str('B').encode())
+                print("soft squeeze REceived")
+                output_serial.write(str('A').encode())
                 #output_serial.readline().decode()
                 print('message received is ' +msg)
+
                 tempRecord =  float(time.time())-(recording_time)
                 recv_list.append(str(tempRecord) + ',soft')
                 #print("touch record is ", touch_record)
                 touch_record.append(msg)
             elif 'medium' in msg:
-                #print("medium squeeze Received")
-                #output_serial.write(str('E').encode())
+                print("medium squeeze Received")
+
+                output_serial.write(str('D').encode())
                 #output_serial.readline().decode()
                 print('message received is ' +msg)
+
                 tempRecord =  float(time.time())-(recording_time)
                 recv_list.append(str(tempRecord)+ ',medium')
                 #print("touch record is ", touch_record)
                 touch_record.append(msg)
             elif 'hard' in msg:
-                #print("hardsqueeze received")
-                #output_serial.write(str('H').encode())
+                print("hardsqueeze received")
+
+                output_serial.write(str('G').encode())
                 #output_serial.readline().decode()
                 print('message received is ' +msg)
+
                 tempRecord =  float(time.time())-(recording_time)
                 recv_list.append(str(tempRecord)+ ',hard')
                 touch_record.append(msg)
                 #print("touch record is ", touch_record)
             elif 'release' in msg:
-                #print("release received")
-                #output_serial.write(str('H').encode())
+                print("release received")
+
+                output_serial.write(str('K').encode())
                 #output_serial.readline().decode()
+
                 print('message received is ' +msg)
                 tempRecord =  float(time.time())-(recording_time)
                 recv_list.append(str(tempRecord)+ ',release')
