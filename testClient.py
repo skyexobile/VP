@@ -10,8 +10,6 @@ import socket
 
 import csv
 from subprocess import Popen, PIPE
-
-
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 port = 8000
 
