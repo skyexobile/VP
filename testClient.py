@@ -23,14 +23,14 @@ input_serial = serial.Serial('/dev/cu.usbmodem14201')
 input_serial.baudrate =115200
 input_serial.setDTR(False)
 input_serial.setRTS(False)
-
+'''
 output_serial = serial.Serial('/dev/cu.usbmodem14101')
 
 output_serial.baudrate =115200
 output_serial.setDTR(False)
 output_serial.setRTS(False)
 
-
+'''
 print("Connected!")
 
 #server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -313,7 +313,7 @@ def receiveMsg(sock):
             #csv_writer(msg, path)
             elif 'soft' in msg:
                 print("soft squeeze REceived")
-                output_serial.write(str('A').encode())
+                #output_serial.write(str('A').encode())
                 #output_serial.readline().decode()
                 print('message received is ' +msg)
 
@@ -324,7 +324,7 @@ def receiveMsg(sock):
             elif 'medium' in msg:
                 print("medium squeeze Received")
 
-                output_serial.write(str('D').encode())
+                #output_serial.write(str('D').encode())
                 #output_serial.readline().decode()
                 print('message received is ' +msg)
 
@@ -335,7 +335,7 @@ def receiveMsg(sock):
             elif 'hard' in msg:
                 print("hardsqueeze received")
 
-                output_serial.write(str('G').encode())
+                #output_serial.write(str('G').encode())
                 #output_serial.readline().decode()
                 print('message received is ' +msg)
 
@@ -346,7 +346,7 @@ def receiveMsg(sock):
             elif 'release' in msg:
                 print("release received")
 
-                output_serial.write(str('K').encode())
+                #output_serial.write(str('K').encode())
                 #output_serial.readline().decode()
 
                 print('message received is ' +msg)
@@ -450,7 +450,7 @@ while clientRunning:
 
 
         #print(input_value)
-        msg = '**' +'PartnerA' + '>>' + tempMsg
+        msg = '**' +'PartnerB' + '>>' + tempMsg
         if '**quit' in msg:
             clientRunning = False
             s.send('**quit'.encode('ascii'))
