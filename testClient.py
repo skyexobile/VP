@@ -23,14 +23,14 @@ input_serial = serial.Serial('/dev/cu.usbmodem14201')
 input_serial.baudrate =115200
 input_serial.setDTR(False)
 input_serial.setRTS(False)
-'''
+
 output_serial = serial.Serial('/dev/cu.usbmodem14101')
 
 output_serial.baudrate =115200
 output_serial.setDTR(False)
 output_serial.setRTS(False)
 
-'''
+
 print("Connected!")
 
 #server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -265,6 +265,32 @@ def save_recv():
     global recv_list
     csv_writer(recv_list, 'Received/received_data.csv')
     print('done')
+def out_soft():
+    output_serial.write(str('a').encode())
+def out_med():
+    output_serial.write(str('b').encode())
+def out_hard():
+    output_serial.write(str('c').encode())
+def releasebtn():
+    output_serial.write(str('K').encode())
+def estop():
+    output_serial.write(str('s').encode())
+def loosen():
+    output_serial.write(str('J').encode())
+def tighten():
+    output_serial.write(str('M').encode())
+def resetout():
+    output_serial.write(str('r').encode())
+
+calisoft =  tkin.Button(root, text = "Set Soft Output", command = out_soft)
+calimed = tkin.Button(root, text = "Set Med. Output", command = out_med)
+calihard = tkin.Button(root, text = "Set Hard Output", command = out_hard)
+calirel = tkin.Button(root, text = "Release Output", command = releasebtn)
+emerstop = tkin.Button(root, text = "Emergency Stop", command = estop)
+loosenbtn = tkin.Button(root, text = "Loosen", command = loosen)
+tightenbtn = tkin.Button(root, text = "Tighten", command = tighten)
+resetoutbtn = tkin.Button(root, text = "Reset Output", command = resetout)
+
 reset_button =  tkin.Button(root, text = "Reset Sensor", command = reset)
 soft_button =  tkin.Button(root, text = "Define Soft", command = set_soft)
 medium_button =  tkin.Button(root, text = "Define Medium", command = set_medium)
@@ -274,16 +300,26 @@ save_button  =  tkin.Button(root, text = "Save Settings", command = save_setting
 record_video = tkin.Button(root, text = "Record", command = record)
 save_sTouch = tkin.Button(root, text = 'Save Sent', command = save_sent)
 save_rTouch = tkin.Button(root, text = 'Save Received', command = save_recv)
-save_rTouch.pack()
-record_video.pack()
-#replay_instance.pack()
-save_sTouch.pack()
-reset_button.pack(side = tkin.BOTTOM)
-soft_button.pack(side = tkin.BOTTOM)
-medium_button.pack(side = tkin.BOTTOM)
-hard_button.pack(side = tkin.BOTTOM)
-save_button.pack(side = tkin.BOTTOM)
+record_video.pack(side = tkin.TOP)
 
+save_rTouch.pack(side = tkin.RIGHT)
+save_sTouch.pack(side = tkin.RIGHT)
+reset_button.pack(side = tkin.LEFT)
+soft_button.pack(side = tkin.LEFT)
+medium_button.pack(side = tkin.LEFT)
+hard_button.pack(side = tkin.LEFT)
+save_button.pack(side = tkin.LEFT)
+resetoutbtn.pack(side = tkin.BOTTOM)
+
+emerstop.pack(side = tkin.BOTTOM)
+loosenbtn.pack(side = tkin.BOTTOM)
+tightenbtn.pack(side = tkin.BOTTOM)
+calirel.pack(side = tkin.BOTTOM)
+
+calihard.pack(side = tkin.BOTTOM)
+
+calimed.pack(side = tkin.BOTTOM)
+calisoft.pack(side = tkin.BOTTOM)
 #root.update()
 def csv_writer(data, path):
     with open(path, "a", newline = '\n') as csv_file:
@@ -313,7 +349,7 @@ def receiveMsg(sock):
             #csv_writer(msg, path)
             elif 'soft' in msg:
                 print("soft squeeze REceived")
-                #output_serial.write(str('A').encode())
+                output_serial.write(str('B').encode())
                 #output_serial.readline().decode()
                 print('message received is ' +msg)
 
@@ -324,7 +360,7 @@ def receiveMsg(sock):
             elif 'medium' in msg:
                 print("medium squeeze Received")
 
-                #output_serial.write(str('D').encode())
+                output_serial.write(str('E').encode())
                 #output_serial.readline().decode()
                 print('message received is ' +msg)
 
@@ -335,7 +371,7 @@ def receiveMsg(sock):
             elif 'hard' in msg:
                 print("hardsqueeze received")
 
-                #output_serial.write(str('G').encode())
+                output_serial.write(str('H').encode())
                 #output_serial.readline().decode()
                 print('message received is ' +msg)
 
@@ -346,7 +382,7 @@ def receiveMsg(sock):
             elif 'release' in msg:
                 print("release received")
 
-                #output_serial.write(str('K').encode())
+                output_serial.write(str('K').encode())
                 #output_serial.readline().decode()
 
                 print('message received is ' +msg)
@@ -449,7 +485,7 @@ while clientRunning:
                         tempMsg = ''
 
 
-        #print(input_value)
+        #print(input_value)f
         msg = '**' +'PartnerB' + '>>' + tempMsg
         if '**quit' in msg:
             clientRunning = False
@@ -458,7 +494,9 @@ while clientRunning:
             if '**vtime' in msg:
                 record()
             elif '**rtime' in msg:
-                print('recording time is ', datetime.datetime.now())
+                now = datetime.datetime.now()
+                print ("Recording date and time : ")
+                print (now.strftime("%Y-%m-%d %H:%M:%S"))
             s.send(msg.encode('ascii'))
             tempMsg = ''
         previous_value = input_value
