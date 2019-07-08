@@ -24,123 +24,171 @@ smcounter = 0
 touch_counter=1
 touch_counter2=1
 f_name = ''
+
 def sent_replay():
     import moviepy.editor as me
     global s_counter, s_dict, splay_counter, smcounter, touch_counter, f_name
-    if ((touch_counter % 2) != 0):
-        if(splay_counter < (len(s_dict))) :
+    generated = False
+    while generated is False:
+        if ((touch_counter % 2) != 0):
+            if(splay_counter < (len(s_dict))) :
 
-            start_time = s_dict[str(splay_counter)][0]
+                start_time = s_dict[str(splay_counter)][0]
+                print('start time is ', start_time)
+                #print(dict[str(play_counter-1)][1])
+                if s_dict[str(splay_counter)][1] is 'release':
+                    end_time = s_dict[str(splay_counter)][1]
 
-            #print(dict[str(play_counter-1)][1])
-            if s_dict[str(splay_counter)][1] is 'release':
-                end_time = s_dict[str(splay_counter)][1]
+                else:
+                    while s_dict[str(splay_counter)][1] is not 'release':
 
+                        if s_dict[str(splay_counter)][1] == 'release':
+                            print('found release in while')
+                            print(s_dict[str(splay_counter)][1])
+                            break
+                        elif s_dict[str(splay_counter)][0] is s_dict[str(s_counter-1)][0]:
+                            print('reached the end of the list')
+                            print(s_dict[str(splay_counter)][0])
+                            print(s_dict[str(s_counter-1)][0])
+                            break
+                        else:
+                            splay_counter+=1
+
+                    end_time = s_dict[str(splay_counter)][0]
+                    print('end time is ', end_time)
+                if start_time == end_time:
+                    print('No more clips')
+                    generated = True
+                else:
+                    for f_name in os.listdir('../VP'):
+                        if f_name.endswith('.mov'):
+                            print(f_name)
+                            clip = me.VideoFileClip(f_name)
+                    #clip = clip.resize(0.5)
+                    #clip = clip.subclip(float(start_time)-1.0, float(stop_time) +1.0)
+                            st = float(start_time)
+                            et = float(end_time)
+                            clip = clip.subclip((st - 0.5), (et+ 0.5))
+                            clip.write_videofile(("Sent/Smovie" + str(smcounter) +".webm"), audio=True) # default codec: 'libx264', 24 fps
+                    print('New Clip Generated')
+                    smcounter+=1
+                    splay_counter+=1
+                    touch_counter+=1
+                    generated = True
             else:
+                print('Done')
+                generated = True
+
+        else:
+
+            if(splay_counter < (len(s_dict))) :
+                start_time = s_dict[str(splay_counter)][0]
+                print('start time2 is ', start_time)
+
                 while s_dict[str(splay_counter)][1] is not 'release':
 
                     if s_dict[str(splay_counter)][1] == 'release':
+                        print('found release in while')
+                        print(s_dict[str(splay_counter)][1])
                         break
                     elif s_dict[str(splay_counter)][0] is s_dict[str(s_counter-1)][0]:
+                        print('reached the end of the list')
+                        print(s_dict[str(splay_counter)][0])
+                        print(s_dict[str(s_counter-1)][0])
                         break
                     else:
                         splay_counter+=1
-
-                end_time = s_dict[str(splay_counter)][0]
-            if start_time == end_time:
-                print('No more clips')
-            else:
-                for f_name in os.listdir('../VP'):
-                    if f_name.endswith('.mov'):
-                        print(f_name)
-                        clip = me.VideoFileClip(f_name)
-                #clip = clip.resize(0.5)
-                #clip = clip.subclip(float(start_time)-1.0, float(stop_time) +1.0)
-                        st = float(start_time)
-                        et = float(end_time)
-                        clip = clip.subclip((st - 0.5), (et+ 0.5))
-                        clip.write_videofile(("Sent/Smovie" + str(smcounter) +".webm"), audio=True) # default codec: 'libx264', 24 fps
-                print('New Clip Generated')
-                smcounter+=1
+                        if s_dict[str(splay_counter)][1] == 'release':
+                            splay_counter+=1
+                            break
+                    splay_counter+=1
                 splay_counter+=1
                 touch_counter+=1
-
-    else:
-        if(splay_counter < (len(s_dict))) :
-            while s_dict[str(splay_counter)][1] is not 'release':
-
-                if s_dict[str(splay_counter)][1] == 'release':
-                    break
-                elif s_dict[str(splay_counter)][0] is s_dict[str(s_counter-1)][0]:
-                    break
-                else:
-                    splay_counter+=1
-                    if s_dict[str(splay_counter)][1] == 'release':
-                        splay_counter+=1
-                        break
-                splay_counter+=1
-            touch_counter+=1
-        else:
-            print('All Done.')
+            else:
+                print('All Done.')
+                generated = True
 def recv_replay():
     import moviepy.editor as me
     global r_dict, r_counter, rplay_counter, rmcounter, touch_counter2, f_name
-    if ((touch_counter2 % 2) != 0):
-        if(rplay_counter < (len(r_dict))) :
+    generated = False
+    while generated is False:
+        if ((touch_counter2 % 2) != 0):
+            if(rplay_counter < (len(r_dict))) :
 
-            start_time = r_dict[str(rplay_counter)][0]
+                start_time = r_dict[str(rplay_counter)][0]
+                print('start time is ', start_time)
+                #print(dict[str(play_counter-1)][1])
+                if r_dict[str(rplay_counter)][1] is 'release':
+                    end_time = r_dict[str(rplay_counter)][1]
 
-            #print(dict[str(play_counter-1)][1])
-            if r_dict[str(rplay_counter)][1] is 'release':
-                end_time = r_dict[str(rplay_counter)][1]
+                else:
+                    while r_dict[str(rplay_counter)][1] is not 'release':
 
+                        if r_dict[str(rplay_counter)][1] == 'release':
+                            print('found release in while')
+                            print(r_dict[str(rplay_counter)][1])
+                            break
+                        elif r_dict[str(rplay_counter)][0] is r_dict[str(r_counter-1)][0]:
+                            print('reached the end of the list')
+                            print(r_dict[str(rplay_counter)][0])
+                            print(r_dict[str(r_counter-1)][0])
+                            break
+                        else:
+                            rplay_counter+=1
+
+                    end_time = r_dict[str(rplay_counter)][0]
+                    print('end time is ', end_time)
+                if start_time == end_time:
+                    print('No more clips')
+                    generated = True
+                else:
+                    for f_name in os.listdir('../VP'):
+                        if f_name.endswith('.mov'):
+                            print(f_name)
+                            clip = me.VideoFileClip(f_name)
+                    #clip = clip.resize(0.5)
+                    #clip = clip.subclip(float(start_time)-1.0, float(stop_time) +1.0)
+                            st = float(start_time)
+                            et = float(end_time)
+                            clip = clip.subclip((st - 0.5), (et+ 0.5))
+                            clip.write_videofile(("Received/Rmovie" + str(rmcounter) +".webm"), audio=True) # default codec: 'libx264', 24 fps
+                    print('New Clip Generated')
+                    rmcounter+=1
+                    rplay_counter+=1
+                    touch_counter2+=1
+                    generated = True
             else:
+                print('Done')
+                generated = True
+
+        else:
+
+            if(rplay_counter < (len(r_dict))) :
+                start_time = r_dict[str(rplay_counter)][0]
+                print('start time2 is ', start_time)
+
                 while r_dict[str(rplay_counter)][1] is not 'release':
 
                     if r_dict[str(rplay_counter)][1] == 'release':
+                        print('found release in while')
+                        print(r_dict[str(rplay_counter)][1])
                         break
                     elif r_dict[str(rplay_counter)][0] is r_dict[str(r_counter-1)][0]:
+                        print('reached the end of the list')
+                        print(r_dict[str(rplay_counter)][0])
+                        print(r_dict[str(r_counter-1)][0])
                         break
                     else:
                         rplay_counter+=1
-
-                end_time = r_dict[str(rplay_counter)][0]
-            if start_time == end_time:
-                print('No more clips')
-            else:
-                for f_name in os.listdir('../VP'):
-                    if f_name.endswith('.mov'):
-                        print(f_name)
-                        clip = me.VideoFileClip(f_name)
-                #clip = clip.resize(0.5)
-                #clip = clip.subclip(float(start_time)-1.0, float(stop_time) +1.0)
-                        st = float(start_time)
-                        et = float(end_time)
-                        clip = clip.subclip((st - 0.5), (et+ 0.5))
-                        clip.write_videofile(("Received/Rmovie" + str(rmcounter) +".webm"), audio=True) # default codec: 'libx264', 24 fps
-                print('New Clip Generated')
-                rmcounter+=1
+                        if r_dict[str(rplay_counter)][1] == 'release':
+                            rplay_counter+=1
+                            break
+                    rplay_counter+=1
                 rplay_counter+=1
                 touch_counter2+=1
-
-    else:
-        if(rplay_counter < (len(r_dict))) :
-            while r_dict[str(rplay_counter)][1] is not 'release':
-
-                if r_dict[str(rplay_counter)][1] == 'release':
-                    break
-                elif r_dict[str(rplay_counter)][0] is r_dict[str(r_counter-1)][0]:
-                    break
-                else:
-                    rplay_counter+=1
-                    if r_dict[str(rplay_counter)][1] == 'release':
-                        rplay_counter+=1
-                        break
-                rplay_counter+=1
-            touch_counter2+=1
-        else:
-            print('All Done.')
-
+            else:
+                print('All Done.')
+                generated = True
 
 replay_instance = tkin.Button(root, text = "Sent Replay", command = sent_replay)
 replay_instance.pack()
