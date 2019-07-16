@@ -89,8 +89,8 @@ def record():
     with open('recordingtime.csv', "a", newline = '\n') as csv_file:
         writer = csv.writer(csv_file, delimiter = '\n')
         now = datetime.datetime.now()
-        time_list.append(now.strftime("%m-%d-%ys %H:%M:%S"))
-        writer.writerow(l)
+        time_list.append(now.strftime("%m-%d-%y %H:%M:%S"))
+        writer.writerow(time_list)
         csv_file.close()
 
 
@@ -268,11 +268,13 @@ def save_settings():
 def save_sent():
     global sent_list
     csv_writer(sent_list, 'Sent/sent_data.csv')
-    print('done')
+    print('Saved Sent Touches')
 def save_recv():
     global recv_list
     csv_writer(recv_list, 'Received/received_data.csv')
-    print('done')
+    print('Saved Received Touches')
+
+
 def out_soft():
     output_serial.write(str('a').encode())
 def out_med():
@@ -290,6 +292,15 @@ def tighten():
 def resetout():
     output_serial.write(str('r').encode())
 
+def on_closing():
+    global clientRunning
+    if messagebox.askokcancel("Quit", "Do you want to quit?"):
+        save_sent()
+        save_recv()
+        root.destroy()
+        clientRunning = False
+
+root.protocol("WM_DELETE_WINDOW", on_closing)
 calisoft =  tkin.Button(root, text = "Set Soft Output", command = out_soft)
 calimed = tkin.Button(root, text = "Set Med. Output", command = out_med)
 calihard = tkin.Button(root, text = "Set Hard Output", command = out_hard)
@@ -334,7 +345,6 @@ def csv_writer(data, path):
         writer = csv.writer(csv_file, delimiter = '\n')
         writer.writerow(data)
         csv_file.close()
-    print('done')
 clientRunning = True
 #path = "DataFiles/" + str(subID)+ "/touch_data.csv"
 #f = open(path,'a')
