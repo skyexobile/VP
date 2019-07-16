@@ -1,6 +1,6 @@
 import socket
 import threading
-import time, sys
+import time, sys, csv
 
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -16,9 +16,11 @@ print('Server Ready...')
 print('Ip Address of the Server::%s'%ip)
 def csv_writer(data, path):
     with open(path, "a", newline = '\n') as csv_file:
-        writer = csv.writer(csv_file, delimiter = '\n')
+        writer = csv.writer(csv_file, delimiter = "'", quoting=csv.QUOTE_NONE)
+        print('this is the data ', data)
         writer.writerow(data)
         csv_file.close()
+        print('finished writing')
 #path = "DataFiles/" + str(subID)+ "/psycho_data.csv"
 def handleClient(client, uname):
     clientConnected = True
@@ -48,14 +50,15 @@ def handleClient(client, uname):
                         ticks = time.time()
                         msg = msg.replace('**'+name, '')
                         msg = msg + (',' + str(ticks))
-                        data = name + ',' + msg
+                        data2 = msg.replace('>>',',')
+                        data = [data2]
                             #csv_writer(temp_msg, path)
                         #print('this name is ', name)
-                        path = 'Data' + name + '/metadata.csv'
-                        csv_writer(data, path)
+                        path = 'Data/' + name + 'received_metadata.csv'
 
                         clients.get(name).send(msg.encode('ascii'))
                         found = True
+                        csv_writer(data, path)
                 if(not found):
                     client.send('Trying to send message to invalid person.'.encode('ascii'))
         except:
