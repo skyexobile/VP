@@ -1,5 +1,6 @@
 
 import tkinter as tkin
+from tkinter import messagebox
 
 import serial, datetime, time, re
 
@@ -88,7 +89,7 @@ def record():
     #s.send('**time'.encode('ascii'))
     videoRecording = True
 
-    with open('recordingtime.csv', "a", newline = '\n') as csv_file:
+    with open('Data/recordingtime.csv', "a", newline = '\n') as csv_file:
         writer = csv.writer(csv_file, delimiter = '\n')
         now = datetime.datetime.now()
         time_list.append(now.strftime("%m-%d-%y %H:%M:%S"))
@@ -102,163 +103,38 @@ def reset():
     offset = 0
     print("Reset Complete")
 def set_soft():
-    print('Please provide three 2-second soft squeezes')
     global offset
-    value_list = []
-    max_list = []
     global soft_value
-    counter = 0
-    previous = -100
-    while counter <3:
+
+    value = (input_serial.readline().decode())
+    try:
+        input_value = float(value) + offset
+    except:
         value = (input_serial.readline().decode())
-        try:
-            input_value = float(value) + offset
-        except:
-            value = (input_serial.readline().decode())
-            input_value = float(value) + offset
-        #print(input_value)
-        if input_value > 50:
-            while (previous - input_value) < 20:
-                value_list.append(input_value)
-                value = (input_serial.readline().decode())
-                try:
-                    new_input_value = float(value) + offset
-                except:
-                    value = (input_serial.readline().decode())
-                    new_input_value = float(value) + offset
-                #print(new_input_value)
-                previous = input_value
-                input_value = new_input_value
-                #print(new_input_value)
+        input_value = float(value) + offset
 
-            index = value_list.index(max(value_list))
-            for i in range(0, index):
-                max_list.append(value_list[i])
-            counter = counter +1
-
-            print("Trial " + str(counter) + " completed!")
-            value = (input_serial.readline().decode())
-            try:
-                input_value = float(value) + offset
-            except:
-                value = (input_serial.readline().decode())
-                input_value = float(value) + offset
-            while (previous - input_value) >5:
-                previous = input_value
-                value = (input_serial.readline().decode())
-                try:
-                    input_value = float(value) + offset
-                except:
-                    value = (input_serial.readline().decode())
-                    input_value = float(value) + offset
-        elif input_value < -3:
-            offset = offset - input_value
-    soft_value = sum(max_list)/len(max_list)
-    print("Soft touches have been trained")
+    soft_value = input_value
+    print("Soft has been defined ", soft_value)
 def set_medium():
-    print('Please provide three 2-second medium squeezes')
-
-    global offset
-    value_list = []
-    max_list = []
-    global medium_value
-    counter = 0
-    previous = -100
-    while counter <3:
+    global medium_value, offset
+    value = (input_serial.readline().decode())
+    try:
+        input_value = float(value) + offset
+    except:
         value = (input_serial.readline().decode())
-        try:
-            input_value = float(value) + offset
-        except:
-            value = (input_serial.readline().decode())
-            input_value = float(value) + offset
-        #print(input_value)
-        if input_value > 200:
-            while (previous - input_value) < 30:
-                value_list.append(input_value)
-                value = (input_serial.readline().decode())
-                try:
-                    new_input_value = float(value) + offset
-                except:
-                    value = (input_serial.readline().decode())
-                    new_input_value = float(value) + offset
-                #print(new_input_value)
-                previous = input_value
-                input_value = new_input_value
-
-            index = value_list.index(max(value_list))
-            for i in range(0, index):
-                max_list.append(value_list[i])
-            counter = counter +1
-            print("Trial " + str(counter) + " completed!")
-            value = (input_serial.readline().decode())
-            try:
-                input_value = float(value) + offset
-            except:
-                value = (input_serial.readline().decode())
-                input_value = float(value) + offset
-            while (previous - input_value) >5:
-                previous = input_value
-                value = (input_serial.readline().decode())
-                try:
-                    input_value = float(value) + offset
-                except:
-                    value = (input_serial.readline().decode())
-                    input_value = float(value) + offset
-        elif input_value < -3:
-            offset = offset - input_value
-    medium_value = sum(max_list)/len(max_list)
-    print("Medium touches have been trained")
+        input_value = float(value) + offset
+    medium_value = input_value
+    print("Medium has been defined ", medium_value)
 def set_hard():
     global offset, hard_value
-    value_list = []
-    max_list = []
-    counter = 0
-    previous = -10
-    print('Please provide three 2-second hard squeezes')
-
-    while counter <3:
+    value = (input_serial.readline().decode())
+    try:
+        input_value = float(value) + offset
+    except:
         value = (input_serial.readline().decode())
-        try:
-            input_value = float(value) + offset
-        except:
-            value = (input_serial.readline().decode())
-            input_value = float(value) + offset
-        #print(input_value)
-        if input_value > 400:
-            while (previous - input_value) < 30:
-                value_list.append(input_value)
-                value = (input_serial.readline().decode())
-                try:
-                    new_input_value = float(value) + offset
-                except:
-                    value = (input_serial.readline().decode())
-                    new_input_value = float(value) + offset
-                #print(new_input_value)
-                previous = input_value
-                input_value = new_input_value
-            index = value_list.index(max(value_list))
-            for i in range(0, index):
-                max_list.append(value_list[i])
-            counter = counter +1
-            print("Trial " + str(counter) + " completed!")
-            value = (input_serial.readline().decode())
-            try:
-                input_value = float(value) + offset
-            except:
-                value = (input_serial.readline().decode())
-                input_value = float(value) + offset
-            while (previous - input_value) >5:
-                previous = input_value
-                value = (input_serial.readline().decode())
-                try:
-                    input_value = float(value) + offset
-                except:
-                    value = (input_serial.readline().decode())
-                    input_value = float(value) + offset
-        elif input_value < -3:
-            offset = offset - input_value
-    hard_value = sum(max_list)/len(max_list)
-    print("Hard touches have been trained")
+        input_value = float(value) + offset
+    hard_value = input_value
+    print("Hard has been defined ", hard_value)
 def save_settings():
     global soft_value, hard_value, PID_value, medium_value
 
@@ -424,7 +300,8 @@ tempMsg = ''
 while clientRunning:
     root.update()
     #print('video recording is ', videoRecording)
-
+    value = (input_serial.readline().decode())
+    input_value = float(value)
     while videoRecording is True:
         root.update()
         value = (input_serial.readline().decode())
@@ -523,8 +400,9 @@ while clientRunning:
                 now = datetime.datetime.now()
                 print ("Recording date and time : ")
                 print (now.strftime("%Y-%m-%d %H:%M:%S"))
-            elif '' in tempMsg:
+            elif tempMsg == '':
                 tempMsg = ''
+                print('stuck in here')
             else:
                 s.send(msg.encode('ascii'))
             tempMsg = ''
