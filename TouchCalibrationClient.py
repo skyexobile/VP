@@ -66,6 +66,8 @@ videoRecording = False
 sent_list=[]
 recv_list= []
 time_list = []
+flag_save_sent = False
+flag_save_recv = False
 def record():
     global recording_time
     global videoRecording, time_list
@@ -268,10 +270,12 @@ def save_settings():
 def save_sent():
     global sent_list
     csv_writer(sent_list, 'Sent/sent_data.csv')
+    flag_save_recv = True
     print('Saved Sent Touches')
 def save_recv():
     global recv_list
     csv_writer(recv_list, 'Received/received_data.csv')
+    flag_save_recv = True
     print('Saved Received Touches')
 
 
@@ -293,10 +297,12 @@ def resetout():
     output_serial.write(str('r').encode())
 
 def on_closing():
-    global clientRunning
+    global clientRunning, flag_save_recv, flag_save_sent
     if messagebox.askokcancel("Quit", "Sent and Received already saved"):
-        save_sent()
-        save_recv()
+        if flag_save_sent is not True:
+            save_sent()
+        if flag_save_recv is not True:
+            save_recv()
         root.destroy()
         clientRunning = False
 
@@ -321,8 +327,8 @@ save_sTouch = tkin.Button(root, text = 'Save Sent', command = save_sent)
 save_rTouch = tkin.Button(root, text = 'Save Received', command = save_recv)
 record_video.pack(side = tkin.TOP)
 
-#save_rTouch.pack(side = tkin.RIGHT)
-#save_sTouch.pack(side = tkin.RIGHT)
+save_rTouch.pack(side = tkin.RIGHT)
+save_sTouch.pack(side = tkin.RIGHT)
 reset_button.pack(side = tkin.LEFT)
 soft_button.pack(side = tkin.LEFT)
 medium_button.pack(side = tkin.LEFT)
