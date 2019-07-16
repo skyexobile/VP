@@ -9,17 +9,16 @@ ip = str(socket.gethostbyname(socket.gethostname()))
 port = 8000
 
 clients = {}
-
+data = []
 s.bind((ip, port))
 s.listen()
 print('Server Ready...')
 print('Ip Address of the Server::%s'%ip)
 def csv_writer(data, path):
-    with open(path, "a", newline = '') as csv_file:
-        #writer = csv.writer(csv_file, delimiter = ' ')
-        csv_file.write(str(data) + '\n')
+    with open(path, "a", newline = '\n') as csv_file:
+        writer = csv.writer(csv_file, delimiter = '\n')
+        writer.writerow(data)
         csv_file.close()
-    print('done')
 #path = "DataFiles/" + str(subID)+ "/psycho_data.csv"
 def handleClient(client, uname):
     clientConnected = True
@@ -49,9 +48,12 @@ def handleClient(client, uname):
                         ticks = time.time()
                         msg = msg.replace('**'+name, '')
                         msg = msg + (',' + str(ticks))
-                        print(msg)
+                        data = name + ',' + msg
                             #csv_writer(temp_msg, path)
                         #print('this name is ', name)
+                        path = 'Data' + name + '/metadata.csv'
+                        csv_writer(data, path)
+
                         clients.get(name).send(msg.encode('ascii'))
                         found = True
                 if(not found):

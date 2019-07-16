@@ -444,7 +444,8 @@ while clientRunning:
                     sent_count+=1
                     released_flag=False
 
-                else: tempMsg = ''
+                else:
+                    tempMsg = ''
                 medium_flag = True
                 soft_flag = False
                 hard_flag = False
@@ -516,6 +517,9 @@ while clientRunning:
                 now = datetime.datetime.now()
                 print ("Recording date and time : ")
                 print (now.strftime("%Y-%m-%d %H:%M:%S"))
-            s.send(msg.encode('ascii'))
+            elif '' in tempMsg:
+                tempMsg = ''
+            else:
+                s.send(msg.encode('ascii'))
             tempMsg = ''
         previous_value = input_value
