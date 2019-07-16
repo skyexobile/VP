@@ -294,7 +294,7 @@ def resetout():
 
 def on_closing():
     global clientRunning
-    if messagebox.askokcancel("Quit", "Do you want to quit?"):
+    if messagebox.askokcancel("Quit", "Sent and Received already saved"):
         save_sent()
         save_recv()
         root.destroy()
@@ -321,8 +321,8 @@ save_sTouch = tkin.Button(root, text = 'Save Sent', command = save_sent)
 save_rTouch = tkin.Button(root, text = 'Save Received', command = save_recv)
 record_video.pack(side = tkin.TOP)
 
-save_rTouch.pack(side = tkin.RIGHT)
-save_sTouch.pack(side = tkin.RIGHT)
+#save_rTouch.pack(side = tkin.RIGHT)
+#save_sTouch.pack(side = tkin.RIGHT)
 reset_button.pack(side = tkin.LEFT)
 soft_button.pack(side = tkin.LEFT)
 medium_button.pack(side = tkin.LEFT)
@@ -366,7 +366,7 @@ def receiveMsg(sock):
                 #print('video recording time is ', recording_time)
             #csv_writer(msg, path)
             elif 'soft' in msg:
-                print("soft squeeze REceived")
+                print("soft squeeze Received")
                 output_serial.write(str('B').encode())
                 #output_serial.readline().decode()
                 print('message received is ' +msg)

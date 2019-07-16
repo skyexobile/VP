@@ -17,10 +17,8 @@ print('Ip Address of the Server::%s'%ip)
 def csv_writer(data, path):
     with open(path, "a", newline = '\n') as csv_file:
         writer = csv.writer(csv_file, delimiter = "'", quoting=csv.QUOTE_NONE)
-        print('this is the data ', data)
         writer.writerow(data)
         csv_file.close()
-        print('finished writing')
 #path = "DataFiles/" + str(subID)+ "/psycho_data.csv"
 def handleClient(client, uname):
     clientConnected = True
@@ -31,7 +29,6 @@ def handleClient(client, uname):
             msg = client.recv(1024).decode('ascii')
             response = 'Number of People Online\n'
             found = False
-            print('this is the message im getting' + msg)
             if '**broadcast' in msg:
                 ticks = time.time()
                 msg = (uname + ',' + str(ticks))

@@ -31,8 +31,8 @@ def sent_replay():
     generated = False
     global click_count
     while generated is False:
-        while click_count <3:
-            if ((touch_counter % 2) != 0):
+        while click_count <7:
+            if ((touch_counter % 4) != 0):
                 if(splay_counter < (len(s_dict))) :
 
                     start_time = s_dict[str(splay_counter)][0]
@@ -71,7 +71,7 @@ def sent_replay():
                             #clip = clip.subclip(float(start_time)-1.0, float(stop_time) +1.0)
                                     st = float(start_time)
                                     et = float(end_time)
-                                    clip = clip.subclip((st - 2), (et+ 1))
+                                    clip = clip.subclip((st - 2), (et+ 2))
                                     clip.write_videofile(("Sent/Smovie" + str(smcounter) +".webm"), audio=True) # default codec: 'libx264', 24 fps
                             print('Clip#'+ str(click_count)+' Generated')
                         click_count+=1
@@ -116,10 +116,9 @@ def recv_replay():
     global r_counter, r_dict, rplay_counter, rmcounter, touch_counter2, f_name
     generated = False
     global click_count
-    print('in command')
     while generated is False:
-        while click_count <3:
-            if ((touch_counter2 % 2) != 0):
+        while click_count <7:
+            if ((touch_counter2 % 4) != 0):
                 if(rplay_counter < (len(r_dict))) :
 
                     start_time = r_dict[str(rplay_counter)][0]
@@ -158,7 +157,7 @@ def recv_replay():
                             #clip = clip.subclip(float(start_time)-1.0, float(stop_time) +1.0)
                                     st = float(start_time)
                                     et = float(end_time)
-                                    clip = clip.subclip((st - 2), (et+ 1))
+                                    clip = clip.subclip((st - 2), (et+ 2))
                                     clip.write_videofile(("Received/Rmovie" + str(rmcounter) +".webm"), audio=True) # default codec: 'libx264', 24 fps
                             print('Clip#'+ str(click_count)+' Generated')
                         click_count+=1
