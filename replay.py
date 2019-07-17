@@ -25,36 +25,51 @@ touch_counter=1
 touch_counter2=1
 f_name = ''
 click_count=0
+release_count = 0
+release_count2 = 0
 def sent_replay():
     import moviepy.editor as me
-    global s_counter, s_dict, splay_counter, smcounter, touch_counter, f_name
+    global s_counter, s_dict, splay_counter, smcounter, touch_counter, f_name, release_count
     generated = False
     global click_count
+    starting = int(release_count/4)
     while generated is False:
+
+        while starting >0:
+            if(splay_counter < (len(s_dict))) :
+                val = s_dict[str(splay_counter)][1]
+                if 'release' in val:
+                    starting-=1
+                    splay_counter+=1
+                else:
+                    while 'release' not in val:
+                        splay_counter+=1
+                        val = s_dict[str(splay_counter)][1]
         while click_count <7:
             if ((touch_counter % 4) != 0):
                 if(splay_counter < (len(s_dict))) :
-
                     start_time = s_dict[str(splay_counter)][0]
                     print('start time is ', start_time)
                     #print(dict[str(play_counter-1)][1])
-                    if s_dict[str(splay_counter)][1] is 'release':
-                        end_time = s_dict[str(splay_counter)][1]
+                    val = s_dict[str(splay_counter)][1]
+
+                    if 'release' in val:
+                        end_time = s_dict[str(splay_counter)][0]
 
                     else:
-                        while s_dict[str(splay_counter)][1] is not 'release':
+                        while 'release' not in val:
 
-                            if s_dict[str(splay_counter)][1] == 'release':
+                            if 'release' in val:
                                 print('found release in while')
                                 print(s_dict[str(splay_counter)][1])
                                 break
-                            elif s_dict[str(splay_counter)][0] is s_dict[str(s_counter-1)][0]:
+                            elif (splay_counter >= len(s_dict)):
                                 print('reached the end of the list')
-                                print(s_dict[str(splay_counter)][0])
-                                print(s_dict[str(s_counter-1)][0])
                                 break
                             else:
                                 splay_counter+=1
+                                val = s_dict[str(splay_counter)][1]
+
 
                         end_time = s_dict[str(splay_counter)][0]
                         print('end time is ', end_time)
@@ -71,7 +86,7 @@ def sent_replay():
                             #clip = clip.subclip(float(start_time)-1.0, float(stop_time) +1.0)
                                     st = float(start_time)
                                     et = float(end_time)
-                                    clip = clip.subclip((st - 2), (et+ 2))
+                                    clip = clip.subclip((st - 3), (et+ 3))
                                     clip.write_videofile(("Sent/Smovie" + str(smcounter) +".webm"), audio=True) # default codec: 'libx264', 24 fps
                             print('Clip#'+ str(click_count)+' Generated')
                         click_count+=1
@@ -83,25 +98,24 @@ def sent_replay():
                     generated = True
 
             else:
-
                 if(splay_counter < (len(s_dict))) :
                     start_time = s_dict[str(splay_counter)][0]
                     print('start time2 is ', start_time)
+                    val = s_dict[str(splay_counter)][1]
 
-                    while s_dict[str(splay_counter)][1] is not 'release':
-
-                        if s_dict[str(splay_counter)][1] == 'release':
+                    while 'release' not in val:
+                        if 'release' in val:
                             print('found release in while')
                             print(s_dict[str(splay_counter)][1])
                             break
-                        elif s_dict[str(splay_counter)][0] is s_dict[str(s_counter-1)][0]:
+                        elif splay_counter == len(s_dict):
                             print('reached the end of the list')
                             print(s_dict[str(splay_counter)][0])
-                            print(s_dict[str(s_counter-1)][0])
                             break
                         else:
                             splay_counter+=1
-                            if s_dict[str(splay_counter)][1] == 'release':
+                            val = s_dict[str(splay_counter)][1]
+                            if 'release' in val:
                                 print('found release')#splay_counter+=1
                                 break
                         splay_counter+=1
@@ -111,12 +125,25 @@ def sent_replay():
                     print('All Done.')
                     generated = True
         generated = True
+
 def recv_replay():
     import moviepy.editor as me
-    global r_counter, r_dict, rplay_counter, rmcounter, touch_counter2, f_name
+    global r_counter, r_dict, rplay_counter, rmcounter, touch_counter2, f_name,release_count2
     generated = False
+    starting = int(release_count2/4)
+
     global click_count
     while generated is False:
+        while starting >0:
+            if(rplay_counter < (len(r_dict))) :
+                val = r_dict[str(rplay_counter)][1]
+                if 'release' in val:
+                    starting-=1
+                    rplay_counter+=1
+                else:
+                    while 'release' not in val:
+                        rplay_counter+=1
+                        val = r_dict[str(rplay_counter)][1]
         while click_count <7:
             if ((touch_counter2 % 4) != 0):
                 if(rplay_counter < (len(r_dict))) :
@@ -124,23 +151,26 @@ def recv_replay():
                     start_time = r_dict[str(rplay_counter)][0]
                     print('start time is ', start_time)
                     #print(dict[str(play_counter-1)][1])
-                    if r_dict[str(rplay_counter)][1] is 'release':
-                        end_time = r_dict[str(rplay_counter)][1]
+                    val = r_dict[str(rplay_counter)][1]
+
+                    if 'release' in val:
+                        end_time = r_dict[str(rplay_counter)][0]
 
                     else:
-                        while r_dict[str(rplay_counter)][1] is not 'release':
+                        while 'release' not in val:
 
-                            if r_dict[str(rplay_counter)][1] == 'release':
+                            if 'release' in val:
                                 print('found release in while')
                                 print(r_dict[str(rplay_counter)][1])
                                 break
-                            elif r_dict[str(rplay_counter)][0] is r_dict[str(r_counter-1)][0]:
+                            elif rplay_counter== len(r_dict):
                                 print('reached the end of the list')
-                                print(r_dict[str(rplay_counter)][0])
-                                print(r_dict[str(r_counter-1)][0])
+
                                 break
                             else:
                                 rplay_counter+=1
+                                val = r_dict[str(rplay_counter)][1]
+
 
                         end_time = r_dict[str(rplay_counter)][0]
                         print('end time is ', end_time)
@@ -157,7 +187,7 @@ def recv_replay():
                             #clip = clip.subclip(float(start_time)-1.0, float(stop_time) +1.0)
                                     st = float(start_time)
                                     et = float(end_time)
-                                    clip = clip.subclip((st - 2), (et+ 2))
+                                    clip = clip.subclip((st - 3), (et+ 3))
                                     clip.write_videofile(("Received/Rmovie" + str(rmcounter) +".webm"), audio=True) # default codec: 'libx264', 24 fps
                             print('Clip#'+ str(click_count)+' Generated')
                         click_count+=1
@@ -173,21 +203,23 @@ def recv_replay():
                 if(rplay_counter < (len(r_dict))) :
                     start_time = r_dict[str(rplay_counter)][0]
                     print('start time2 is ', start_time)
+                    val = r_dict[str(rplay_counter)][1]
 
-                    while r_dict[str(rplay_counter)][1] is not 'release':
+                    while 'release' not in val:
 
-                        if r_dict[str(rplay_counter)][1] == 'release':
+                        if 'release' in val:
                             print('found release in while')
                             print(r_dict[str(rplay_counter)][1])
                             break
-                        elif r_dict[str(rplay_counter)][0] is r_dict[str(r_counter-1)][0]:
+                        elif rplay_counter==len(r_dict):
                             print('reached the end of the list')
-                            print(r_dict[str(rplay_counter)][0])
-                            print(r_dict[str(r_counter-1)][0])
+
                             break
                         else:
                             rplay_counter+=1
-                            if r_dict[str(rplay_counter)][1] == 'release':
+                            val = r_dict[str(rplay_counter)][1]
+
+                            if 'release' in val:
                                 print('found release')#rplay_counter+=1
                                 break
                         rplay_counter+=1
@@ -201,18 +233,23 @@ def recv_replay():
 with open('Sent/sent_data.csv', newline='') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
         for row in spamreader:
+            if 'release' in row:
+                release_count +=1
             s_dict[str(s_counter)]=row
             s_counter+=1
+        print('this is the count ',release_count)
         csvfile.close()
 
 with open('Received/received_data.csv', newline='') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
         for row in spamreader:
+            if 'release' in row:
+                release_count2 +=1
             r_dict[str(r_counter)]=row
             r_counter+=1
         csvfile.close()
 
-sent_replay()
+#sent_replay()
 click_count =0
 recv_replay()
 print('All Done.')
