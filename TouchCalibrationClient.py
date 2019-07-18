@@ -171,6 +171,7 @@ def tighten():
     output_serial.write(str('M').encode())
 def resetout():
     output_serial.write(str('r').encode())
+    print('Reset Complete')
 
 def on_closing():
     global clientRunning, flag_save_recv, flag_save_sent
@@ -306,7 +307,7 @@ while clientRunning:
         root.update()
         value = (input_serial.readline().decode())
         input_value = float(value)
-        if  abs(input_value) - abs(previous_value) >0:
+        if abs(input_value) - abs(previous_value) >0:
             if input_value >= soft_value and input_value < medium_value:
                 if soft_flag is False:
                     tempMsg = 'soft'
@@ -367,7 +368,7 @@ while clientRunning:
                 if medium_flag is True:
                     if input_value < medium_value:
                         tempMsg = 'release'
-                        tempRecord = float(time.time())-(recording_time)
+\                        tempRecord = float(time.time())-(recording_time)
                         sent_list.append(str(tempRecord)+ ','+ tempMsg)
 
                         sent_count+=1
@@ -377,7 +378,6 @@ while clientRunning:
                         tempMsg = ''
                 if hard_flag is True:
                     if input_value < hard_value:
-                        hard_flag = False
                         tempMsg = 'release'
                         tempRecord = float(time.time())-(recording_time)
                         sent_list.append(str(tempRecord)+ ','+ tempMsg)
@@ -402,8 +402,10 @@ while clientRunning:
                 print (now.strftime("%Y-%m-%d %H:%M:%S"))
             elif tempMsg == '':
                 tempMsg = ''
-                print('stuck in here')
+                #print('stuck in here')
             else:
+                print('sending ', tempMsg)
                 s.send(msg.encode('ascii'))
+
             tempMsg = ''
         previous_value = input_value
