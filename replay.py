@@ -24,32 +24,40 @@ smcounter = 0
 touch_counter=1
 touch_counter2=1
 f_name = ''
-click_count=0
+click_count=1
 release_count = 0
 release_count2 = 0
 start_time = 0
 end_time = 0
+generated= False
 def sent_replay():
     import moviepy.editor as me
     global s_counter, s_dict, splay_counter, smcounter, touch_counter, f_name, release_count, start_time, end_time
-    generated = False
+    global generated
     global click_count
     starting = int(release_count/4)
+    print('starting', starting)
     while generated is False:
 
         while starting >0:
             if(splay_counter < (len(s_dict))) :
+                print('here')
                 val = s_dict[str(splay_counter)][1]
                 if 'release' in val:
                     starting-=1
                     splay_counter+=1
                 else:
                     while 'release' not in val:
-                        splay_counter+=1
                         val = s_dict[str(splay_counter)][1]
+                        splay_counter+=1
+                    break
+
         while click_count <7:
             num = touch_counter %4
+            print('number is ', num)
+            print('click count is ', click_count)
             if (num == 0):
+                print('splay counter is ', splay_counter)
                 if(splay_counter < (len(s_dict))) :
                     start_time = s_dict[str(splay_counter)][0]
                     print('start time is ', start_time)
@@ -79,8 +87,10 @@ def sent_replay():
                     if start_time == end_time:
                         print('No more clips')
                         generated = True
+                        break
                     else:
-                        if click_count >1:
+                        if click_count >0:
+                            print('writing')
                             for f_name in os.listdir('../VP'):
                                 if f_name.endswith('.mov'):
                                     print(f_name)
@@ -92,15 +102,22 @@ def sent_replay():
                                     clip = clip.subclip((st - 2), (et+ 2))
                                     clip.write_videofile(("Sent/Smovie" + str(smcounter) +".webm"), audio=True) # default codec: 'libx264', 24 fps
                             print('Clip#'+ str(click_count)+' Generated')
+                        else:
+                            print('click count is ', click_count)
                         click_count+=1
+                        print('test')
                         smcounter+=1
                         splay_counter+=1
                         touch_counter+=1
+
                 else:
                     print('Done')
                     generated = True
+                    break
 
             else:
+                print('splay counter is ', splay_counter)
+                print('len s_dict is ', len(s_dict))
                 if(splay_counter < (len(s_dict))) :
                     start_time = s_dict[str(splay_counter)][0]
                     val = s_dict[str(splay_counter)][1]
@@ -115,20 +132,19 @@ def sent_replay():
                         else:
                             splay_counter+=1
                             val = s_dict[str(splay_counter)][1]
-                            if 'release' in val:
-                                break
-                        splay_counter+=1
+
                     splay_counter+=1
                     touch_counter+=1
                 else:
                     print('All Done.')
-                    generated = True
+                    generated=True
+                    break
         generated = True
 
 def recv_replay():
     import moviepy.editor as me
     global r_counter, r_dict, rplay_counter, rmcounter, touch_counter2, f_name,release_count2
-    generated = False
+    global generated
     starting = int(release_count2/4)
 
     global click_count
@@ -141,11 +157,13 @@ def recv_replay():
                     rplay_counter+=1
                 else:
                     while 'release' not in val:
-                        rplay_counter+=1
                         val = r_dict[str(rplay_counter)][1]
+                        rplay_counter+=1
+                    break
         while click_count <7:
-            if ((touch_counter2 % 4) != 0):
-                if(rplay_counter < (len(r_dict))) :
+            num = touch_counter2 %4
+            if (num == 0):
+                if(rplay_counter <(len(r_dict))) :
 
                     start_time = r_dict[str(rplay_counter)][0]
                     print('start time is ', start_time)
@@ -162,7 +180,7 @@ def recv_replay():
                                 print('found release in while')
                                 print(r_dict[str(rplay_counter)][1])
                                 break
-                            elif rplay_counter== len(r_dict):
+                            elif rplay_counter>= len(r_dict):
                                 print('reached the end of the list')
 
                                 break
@@ -176,8 +194,9 @@ def recv_replay():
                     if start_time == end_time:
                         print('No more clips')
                         generated = True
+                        break
                     else:
-                        if click_count >1:
+                        if click_count >0:
                             for f_name in os.listdir('../VP'):
                                 if f_name.endswith('.mov'):
                                     print(f_name)
@@ -195,7 +214,7 @@ def recv_replay():
                         touch_counter2+=1
                 else:
                     print('Done')
-                    generated = True
+                    break
 
             else:
 
@@ -216,15 +235,13 @@ def recv_replay():
                             rplay_counter+=1
                             val = r_dict[str(rplay_counter)][1]
 
-                            if 'release' in val:
-                                print('found release')#rplay_counter+=1
-                                break
-                        rplay_counter+=1
+
                     rplay_counter+=1
                     touch_counter2+=1
                 else:
                     print('All Done.')
-                    generated = True
+                    generated= True
+                    break
         generated=True
 
 with open('Sent/sent_data.csv', newline='') as csvfile:
@@ -246,7 +263,8 @@ with open('Received/received_data.csv', newline='') as csvfile:
             r_counter+=1
         csvfile.close()
 
-#sent_replay()
-click_count =0
+sent_replay()
+click_count =1
+generated= False
 recv_replay()
-print('All Done.')
+print('Finished')
