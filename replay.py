@@ -27,9 +27,11 @@ f_name = ''
 click_count=0
 release_count = 0
 release_count2 = 0
+start_time = 0
+end_time = 0
 def sent_replay():
     import moviepy.editor as me
-    global s_counter, s_dict, splay_counter, smcounter, touch_counter, f_name, release_count
+    global s_counter, s_dict, splay_counter, smcounter, touch_counter, f_name, release_count, start_time, end_time
     generated = False
     global click_count
     starting = int(release_count/4)
@@ -46,7 +48,8 @@ def sent_replay():
                         splay_counter+=1
                         val = s_dict[str(splay_counter)][1]
         while click_count <7:
-            if ((touch_counter % 4) != 0):
+            num = touch_counter %4
+            if (num == 0):
                 if(splay_counter < (len(s_dict))) :
                     start_time = s_dict[str(splay_counter)][0]
                     print('start time is ', start_time)
@@ -86,7 +89,7 @@ def sent_replay():
                             #clip = clip.subclip(float(start_time)-1.0, float(stop_time) +1.0)
                                     st = float(start_time)
                                     et = float(end_time)
-                                    clip = clip.subclip((st - 3), (et+ 3))
+                                    clip = clip.subclip((st - 2), (et+ 2))
                                     clip.write_videofile(("Sent/Smovie" + str(smcounter) +".webm"), audio=True) # default codec: 'libx264', 24 fps
                             print('Clip#'+ str(click_count)+' Generated')
                         click_count+=1
@@ -100,23 +103,19 @@ def sent_replay():
             else:
                 if(splay_counter < (len(s_dict))) :
                     start_time = s_dict[str(splay_counter)][0]
-                    print('start time2 is ', start_time)
                     val = s_dict[str(splay_counter)][1]
 
                     while 'release' not in val:
                         if 'release' in val:
-                            print('found release in while')
                             print(s_dict[str(splay_counter)][1])
                             break
                         elif splay_counter == len(s_dict):
-                            print('reached the end of the list')
                             print(s_dict[str(splay_counter)][0])
                             break
                         else:
                             splay_counter+=1
                             val = s_dict[str(splay_counter)][1]
                             if 'release' in val:
-                                print('found release')#splay_counter+=1
                                 break
                         splay_counter+=1
                     splay_counter+=1
@@ -187,7 +186,7 @@ def recv_replay():
                             #clip = clip.subclip(float(start_time)-1.0, float(stop_time) +1.0)
                                     st = float(start_time)
                                     et = float(end_time)
-                                    clip = clip.subclip((st - 3), (et+ 3))
+                                    clip = clip.subclip((st - 2), (et+ 2))
                                     clip.write_videofile(("Received/Rmovie" + str(rmcounter) +".webm"), audio=True) # default codec: 'libx264', 24 fps
                             print('Clip#'+ str(click_count)+' Generated')
                         click_count+=1
@@ -202,14 +201,12 @@ def recv_replay():
 
                 if(rplay_counter < (len(r_dict))) :
                     start_time = r_dict[str(rplay_counter)][0]
-                    print('start time2 is ', start_time)
                     val = r_dict[str(rplay_counter)][1]
 
                     while 'release' not in val:
 
                         if 'release' in val:
                             print('found release in while')
-                            print(r_dict[str(rplay_counter)][1])
                             break
                         elif rplay_counter==len(r_dict):
                             print('reached the end of the list')
