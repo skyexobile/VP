@@ -1,10 +1,55 @@
 import pandas as pd
-import csv,os
+import os
+import openpyxl
+import csv as csv
+header='../VP/B'
+def convert(fn,count):
+    filename = header+str(count)+'/'+fn+'.xlsx'
+
+    ## opening the xlsx file
+    xlsx = openpyxl.load_workbook(filename)
+
+    ## opening the active sheet
+    sheet = xlsx.active
+
+    ## getting the data from the sheet
+    data = sheet.rows
+
+    ## creating a csv file
+    csv = open(header+str(count)+'/'+fn+' - Sheet1.csv', "w+")
+    writing = True
+    for row in data:
+        l = list(row)
+        for i in range(len(l)):
+            val = str(l[i].value)
+            if val in "None":
+                writing = False
+            elif i == len(l) - 1:
+                val = str(l[i].value)
+                if val.endswith('.0'):
+                    val = val[:-2]
+                csv.write(val)
+                writing = True
+
+            else:
+                val = str(l[i].value)
+
+                if val.endswith('.0'):
+                    val = val[:-2]
+                csv.write(val + ',')
+                writing = True
+
+            if writing == True:
+                csv.write('\n')
+
+    ## close the csv file
+    csv.close()
+
 def reversal(val):
     array=[0,4,3,2,1]
     return(array[val])
 def csv_writer(data, path):
-    with open(path, "a", newline = '\n') as csv_file:
+    with open(path, "w", newline = '\n') as csv_file:
         writer = csv.writer(csv_file, delimiter = ',', quoting =csv.QUOTE_NONE)
         writer.writerows(data)
         csv_file.close()
@@ -37,39 +82,52 @@ def generate(name):
     values=[]
     start = False
     print('test')
-    with open(name, newline='\n') as csvfile:
+    with open(name,newline='\n') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
         for i in spamreader:
             for j in i:
                 if 'cheerful'  in j or 'sheepish' in j:
                     start = True
                 if start is True:
-                    if len(j)>0:
-                        if len(j)>1:
+                    if len(j)>0 and j not in 'None':
+                        if len(j)>1 and j not in 'None':
 
                             stop = j.find('. ')
                             j=(j[stop+2:])
                             key = j
-                            print('key is ', key)
+                            #print('key is ', key)
                             keys.append(j)
                         else:
                             data.update({str(key):j})
                             values.append(j)
-                            print('value is ', j)
+                            #print('value is ', j)
         csvfile.close()
         pan = {'Values': values}
         df=pd.DataFrame.from_dict(pan)
         df.index= keys
         return df
-counter=1
-for f_name in os.listdir('../VP/A'+ str(counter)+'/'):
-        content = []
-        counter=1
-        if f_name.startswith('PANAS') and not f_name.endswith('score.csv'):
-            while counter <7:
+
+
+
+counter=20
+
+while counter <23:
+
+    convert('PANAS-X1',counter)
+    print('PANAS1 DONE')
+    convert('PANAS-X2',counter)
+
+    print('PANAS2 DONE')
+    convert('PANAS-X3',counter)
+    print('PANAS3 DONE', counter)
+    print('here' , os.listdir(header+ str(counter)+'/'))
+    for f_name in os.listdir(header+ str(counter)+'/'):
+            content = []
+            if f_name.startswith('PANAS') and not f_name.endswith('score.csv')and not f_name.endswith('.xlsx'):
+
                 print('counter is ',counter)
 
-                df = generate(('../VP/B'+str(counter) + '/')+f_name)
+                df = generate((header+str(counter) + '/')+f_name)
                 val = f_name.find('- Sheet1')
                 label = (f_name[:val-1])
                 print(label)
@@ -100,10 +158,14 @@ for f_name in os.listdir('../VP/A'+ str(counter)+'/'):
                 content.append(['Attentiveness', attenscore])
                 content.append(['Serenity', serenscore])
                 content.append(['Surprise', surprisescore])
-                path = '../VP/A'+str(counter) + '/'+label + '_score.csv'
-                #csv_writer(content, path )
-                counter+=1
+                path = header+str(counter) + '/'+label + '_score.csv'
+                csv_writer(content, path )
+                content = []
+
+    counter+=1
+
 '''
+
         else:
             def calculate2(li, val):
                 global df

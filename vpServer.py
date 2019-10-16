@@ -47,7 +47,8 @@ def handleClient(client, uname):
                         ticks = time.time()
                         msg = msg.replace('**'+name, '')
                         msg = msg + (',' + str(ticks))
-                        data2 = msg.replace('>>',',')
+                        print(msg)
+                        data2 = msg.replace('>>','')
                         data = [data2]
                             #csv_writer(temp_msg, path)
                         #print('this name is ', name)

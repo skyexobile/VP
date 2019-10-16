@@ -1,12 +1,16 @@
 import datetime,csv
 
 data = []
+deltaData = []
 def csv_writer(data, path):
-    with open(path, "a", newline = '\n') as csv_file:
+    with open(path, "w", newline = '\n') as csv_file:
         writer = csv.writer(csv_file, delimiter = "\n", quoting=csv.QUOTE_NONE)
         writer.writerow(data)
         csv_file.close()
-with open('Data/recordingtime.csv', newline='\n') as csvfile:
+counter=3
+while counter<23:
+    path = "../VP/A" + str(counter)+"/"
+    with open(path+'recordingtime.csv', newline='\n') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
         for i in spamreader:
             for j in i:
@@ -23,17 +27,27 @@ with open('Data/recordingtime.csv', newline='\n') as csvfile:
                 second = int(list[2])
         csvfile.close()
 
-a = datetime.timedelta(hours = hour, minutes = minute, seconds = second)
-print(a)
+    a = datetime.timedelta(hours = hour, minutes = minute, seconds = second)
+    print(a)
 
-with open('Received/received_data.csv', newline='\n') as csvfile:
-        spamreader = csv.reader(csvfile, delimiter='\n', quotechar='|')
-        for i in spamreader:
-            for j in i:
-                val = j.find(',')
-                delta = j[:val]
-                squeeze = j[val+1:]
-                data.append( str(a+datetime.timedelta(seconds=(float(delta)))) + ','+ squeeze)
-        csvfile.close()
+    with open(path+'received_data.csv', newline='\n') as csvfile:
+            spamreader = csv.reader(csvfile, delimiter='\n', quotechar='|')
+            for i in spamreader:
+                for j in i:
+                    val = j.find(',')
+                    delta = j[:val]
+                    squeeze = j[val+1:]
+                    data.append( str(a+datetime.timedelta(seconds=(float(delta)))) + ','+ squeeze)
+                    quotient = float(delta)/60.0
+                    print('quotient ', quotient)
+                    b = datetime.timedelta(hours = 0, minutes = 0, seconds = 0)
 
-csv_writer(data, 'received_touch.csv')
+                    deltaData.append( str(b+datetime.timedelta(seconds=(float(delta)))) + ','+ squeeze)
+            csvfile.close()
+
+    csv_writer(data, path+'received_touch.csv')
+    csv_writer(deltaData, path+'received_touch_delta.csv')
+
+    print('done', counter)
+
+    counter+=1

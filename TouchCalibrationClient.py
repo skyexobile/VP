@@ -368,7 +368,7 @@ while clientRunning:
                 if medium_flag is True:
                     if input_value < medium_value:
                         tempMsg = 'release'
-\                        tempRecord = float(time.time())-(recording_time)
+                        tempRecord = float(time.time())-(recording_time)
                         sent_list.append(str(tempRecord)+ ','+ tempMsg)
 
                         sent_count+=1
