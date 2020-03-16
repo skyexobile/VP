@@ -13,10 +13,10 @@ def process(header,type,df):
         if timeflag is False:
             temptime = df.iloc[i][0]
             if initial is False:
-                ediff = temptime - datetime.timedelta(seconds = 1)
+                ediff = temptime - datetime.timedelta(seconds = 10)
                 print( 'edfiff is ', ediff)
             else:
-                ediff = temptime - datetime.timedelta(seconds = 1)
+                ediff = temptime - datetime.timedelta(seconds = 10)
                 initial = False
             t_time=('['+str(ediff)[7:-4]+']')
             print(t_time)
@@ -29,6 +29,7 @@ def process(header,type,df):
             timeflag = False
         temptouch = df.iloc[i][1]
     #df2 = pd.DataFrame(temptouch)
+    print(data)
     file = open(header+ type+'_TimeStamps.txt','w')
     for i in data:
         file.write(i)
@@ -64,4 +65,4 @@ for i in range(1,15):
     header=('../VP/A' +str(i) + '/')
 
     rt_combined = csv_reader(header, 'received_data.csv', 'R')
-    st_combined = csv_reader(header, 'sent_data.csv', 'S')
+    #st_combined = csv_reader(header, 'sent_data.csv', 'S')
