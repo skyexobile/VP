@@ -59,9 +59,9 @@ def csv_reader(header, path, type):
     process(header,type, df2)
     return df2
 
-for i in range(14,15):
+for i in range(1,15):
     print('ID',i)
-    header=('../VP/B' +str(i) + '/')
+    header=('../VP/A' +str(i) + '/')
 
     #rt_combined = csv_reader(header, 'received_data.csv', 'R')
     st_combined = csv_reader(header, 'sent_data.csv', 'S')

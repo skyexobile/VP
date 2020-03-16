@@ -3,7 +3,7 @@
 [00:02:10.28] medium /d 0:00.17 d/ /i testing i/ 
 [00:04:08.55] hard /d 0:00.87 d/ /i playful i/ 
 [00:05:43.23] medium /d 0:00.17 d/ /i loving i/ 
-[00:08:20.98] soft /d 0:00.26 d/
-[00:12:41.28] soft /d 0:00.34 d/
-[00:17:04.03] soft /d 0:00.26 d/
+[00:08:20.98] soft /d 0:00.26 d/ /i loving i/ 
+[00:12:41.28] soft /d 0:00.34 d/ /i playful i/ 
+[00:17:04.03] soft /d 0:00.26 d/ playful i/ 
 
