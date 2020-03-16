@@ -3,7 +3,7 @@ Servo servo;
 void setup() {
 
   Serial.begin(115200); 
-  servo.attach(6);
+  servo.attach(5);
   servo.write(90);
 
 }
