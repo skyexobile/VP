@@ -63,5 +63,5 @@ for i in range(1,15):
     print('ID',i)
     header=('../VP/A' +str(i) + '/')
 
-    #rt_combined = csv_reader(header, 'received_data.csv', 'R')
+    rt_combined = csv_reader(header, 'received_data.csv', 'R')
     st_combined = csv_reader(header, 'sent_data.csv', 'S')
