@@ -1,0 +1,50 @@
+[00:00:11.04] medium /d 0:00.96 d/ /i testing i/ 
+[00:00:33.31] hard /d 0:00.78 d/ /i testing i/ 
+[00:00:40.48] soft /d 0:06.46 d/ /i testing i/ 
+[00:01:01.09] soft /d 0:04.45 d/ /i testing i/ 
+[00:02:05.56] medium /d 0:01.74 d/ /i playful i/ 
+[00:02:10.10] hard /d 0:01.13 d/ i playful i/ 
+[00:02:32.72] soft /d 0:07.60 d/ /i playful i/ 
+[00:02:50.45] soft /d 0:18.51 d/ /i reciprocation i/ 
+[00:03:53.17] medium /d 0:01.13 d/ /i playful i/ 
+[00:03:55.45] medium /d 0:02.00 d/ /i playful i/ 
+[00:04:00.78] medium /d 0:01.74 d/ /i playful i/ 
+[00:04:02.87] hard /d 0:03.66 d/ /i playful i/ 
+[00:04:07.76] medium /d 0:00.87 d/ /i playful i/
+[00:05:27.08] hard /d 0:11.00 d/ /i reciprocation i/ 
+[00:05:53.72] hard /d 0:02.53 d/ /i playful i/
+[00:06:03.24] soft /d 0:30.83 d/ /i attention seeking i/
+[00:06:46.14] soft /d 0:13.27 d/ /i playful i/
+[00:07:02.04] soft /d 0:02.18 d/ /i affection i/ 
+[00:07:05.71] soft /d 0:12.40 d/ /i affection i/
+[00:07:18.55] soft /d 0:05.06 d/ /i anger i/
+[00:07:25.27] soft /d 0:01.04 d/ /i anger i/
+[00:07:28.94] medium /d 0:01.04 d/ /i playful i/
+[00:07:30.78] soft /d 0:00.69 d/ /i playful i/
+[00:07:33.31] hard /d 0:04.19 d/ /i playful i/
+[00:07:38.20] medium /d 0:00.52 d/ /i playful i/
+[00:09:10.97] medium /d 0:01.22 d/ /i prove a point i/
+[00:09:12.28] medium /d 0:05.85 d/ /i emphasis i/ 
+[00:09:19.18] medium /d 0:01.31 d/ /i prove a point i/
+[00:09:28.70] medium /d 0:00.52 d/ /i playful i/
+[00:09:29.75] soft /d 1:13.55 d/ /i playful i/
+[00:10:51.60] hard /d 0:01.04 d/ /i  playful i/ 
+[00:10:53.44] medium /d 0:00.87 d/ /i playful i/ 
+[00:11:42.27] hard /d 0:46.99 d/ /i prove a point i/
+[00:12:33.72] soft /d 0:19.30 d/ /i assurance i/ 
+[00:12:54.16] soft /d 0:00.26 d/ /i assurance i/
+[00:12:59.23] medium /d 0:01.40 d/ /i playful i/ 
+[00:13:00.80] medium /d 0:00.87 d/ /i playful i/ 
+[00:13:04.21] soft /d 0:00.08 d/ /i testing i/ 
+[00:14:07.80] soft /d 0:04.89 d/ /i make a point i/
+[00:15:11.92] medium /d 0:01.04 d/ /i loving i/
+[00:15:13.23] medium /d 0:01.83 d/ /i loving i/ 
+[00:15:15.41] medium /d 0:00.52 d/ /i playful i/ 
+[00:15:18.38] soft /d 0:28.21 d/ /i loving i/ 
+[00:15:51.49] soft /d 0:01.22 d/ /i playful i/
+[00:15:55.77] hard /d 0:04.28 d/ /i playful i/
+[00:16:00.23] medium /d 0:00.70 d/ /i playful i/
+[00:16:08.35] hard /d 0:02.88 d/ /i surprise i/
+[00:16:23.90] soft /d 0:03.66 d/ /i attention seeking i/
+[00:16:31.15] soft /d 0:00.61 d/ /i playful i/ 
+[00:16:41.02] hard /d 0:01.83 d/ /

@@ -1,66 +1,47 @@
-[00:00:13.44] medium /d 0:01.22 d/
-[00:00:12.92] soft /d 0:00.70 d/
-[00:00:20.53] medium /d 0:01.40 d/
-[00:00:22.27] medium /d 0:01.04 d/
-[00:00:23.76] medium /d 0:01.39 d/
-[00:00:31.54] medium /d 0:02.01 d/
-[00:00:33.81] hard /d 0:01.65 d/
-[00:00:35.82] medium /d 0:00.69 d/
-[00:00:41.67] hard /d 0:02.18 d/
-[00:00:44.03] medium /d 0:00.34 d/
-[00:00:51.98] medium /d 0:03.67 d/
-[00:00:58.80] hard /d 0:04.80 d/
-[00:01:06.23] hard /d 0:01.31 d/
-[00:01:09.72] medium /d 0:01.22 d/
-[00:01:13.48] medium /d 0:03.84 d/
-[00:01:20.82] medium /d 0:02.00 d/
-[00:01:25.89] medium /d 0:00.96 d/
-[00:01:27.20] medium /d 0:02.79 d/
-[00:01:32.88] medium /d 0:04.45 d/
-[00:02:35.80] medium /d 0:01.13 d/
+
 [00:03:09.54] medium /d 0:00.26 d/
-[00:03:10.59] soft /d 0:01.22 d/
-[00:03:20.56] medium /d 0:02.44 d/
-[00:03:29.13] medium /d 0:01.13 d/
-[00:03:43.20] medium /d 0:02.18 d/
-[00:03:55.79] hard /d 0:05.07 d/
-[00:04:04.71] hard /d 0:03.06 d/
-[00:04:15.29] medium /d 0:01.31 d/
-[00:04:47.20] medium /d 0:04.02 d/
-[00:05:34.07] hard /d 0:00.70 d/
-[00:05:38.71] medium /d 0:02.96 d/
-[00:05:57.33] medium /d 0:03.23 d/
-[00:06:19.80] medium /d 0:03.14 d/
-[00:06:32.39] medium /d 0:03.23 d/
-[00:07:07.37] hard /d 0:01.05 d/
-[00:07:08.60] hard /d 0:00.17 d/
-[00:07:09.39] medium /d 0:00.87 d/
-[00:08:27.83] medium /d 0:01.13 d/
-[00:08:29.05] medium /d 0:01.92 d/
-[00:08:32.11] soft /d 0:04.02 d/
-[00:08:53.01] medium /d 0:07.17 d/
-[00:09:12.69] medium /d 0:04.19 d/
-[00:09:16.98] medium /d 0:00.43 d/
-[00:09:20.91] medium /d 0:07.51 d/
-[00:09:41.29] medium /d 0:19.41 d/
-[00:10:32.98] medium /d 0:08.57 d/
-[00:10:44.96] medium /d 0:09.27 d/
-[00:11:01.31] medium /d 0:22.03 d/
-[00:11:31.48] medium /d 0:01.40 d/
-[00:11:37.61] medium /d 0:02.71 d/
-[00:11:51.34] medium /d 0:02.44 d/
-[00:11:53.88] soft /d 0:00.26 d/
-[00:12:20.73] medium /d 0:17.05 d/
-[00:13:02.01] medium /d 0:02.44 d/
-[00:13:34.64] medium /d 0:02.79 d/
-[00:13:40.06] medium /d 0:09.88 d/
-[00:13:56.42] medium /d 0:00.61 d/
-[00:13:57.64] soft /d 0:31.66 d/
-[00:14:59.48] medium /d 0:13.38 d/
-[00:15:21.44] hard /d 0:05.86 d/
-[00:15:28.35] medium /d 0:13.55 d/
-[00:16:56.43] medium /d 0:05.33 d/
-[00:17:14.89] medium /d 0:19.24 d/
-[00:17:57.32] medium /d 0:01.48 d/
-[00:17:59.50] medium /d 0:01.13 d/
-[00:18:02.39] medium /d 0:01.83 d/
+[00:03:10.59] soft /d 0:01.22 d/ /i laughing i/
+[00:03:20.56] medium /d 0:02.44 d/ /i affection i/
+[00:03:29.13] medium /d 0:01.13 d/ /i affection i/
+[00:03:43.20] medium /d 0:02.18 d/ /i loving i/
+[00:03:55.79] hard /d 0:05.07 d/ /i playful i/
+[00:04:04.71] hard /d 0:03.06 d/ /i playful i/
+[00:04:15.29] medium /d 0:01.31 d/ /i nudging i/ 
+[00:04:47.20] medium /d 0:04.02 d/ /i agreement i/ 
+[00:05:34.07] hard /d 0:00.70 d/ /i affection i/
+[00:05:38.71] medium /d 0:02.96 d/ /i agreement i/
+[00:05:57.33] medium /d 0:03.23 d/ /i attention seeking i/ 
+[00:06:19.80] medium /d 0:03.14 d/ /i proving point i/
+[00:06:32.39] medium /d 0:03.23 d/ /i transition i/ 
+[00:07:07.37] hard /d 0:01.05 d/ /i affection i/
+[00:07:08.60] hard /d 0:00.17 d/ /i affection i/
+[00:07:09.39] medium /d 0:00.87 d/ /i holding hands i/
+[00:08:27.83] medium /d 0:01.13 d/ /i playful i/
+[00:08:29.05] medium /d 0:01.92 d/ /i playful i/
+[00:08:32.11] soft /d 0:04.02 d/ /i assurance i/
+[00:08:53.01] medium /d 0:07.17 d/ /i comfort i/
+[00:09:12.69] medium /d 0:04.19 d/ /i playful i/ 
+[00:09:16.98] medium /d 0:00.43 d/ /i playful i/
+[00:09:20.91] medium /d 0:07.51 d/ /i affection i/
+[00:09:41.29] medium /d 0:19.41 d/ /i playful i/ 
+[00:10:32.98] medium /d 0:08.57 d/ /i affection i/
+[00:10:44.96] medium /d 0:09.27 d/ /i playful i/
+[00:11:01.31] medium /d 0:22.03 d/ /i affection i/ 
+[00:11:31.48] medium /d 0:01.40 d/ /i affection i/ 
+[00:11:37.61] medium /d 0:02.71 d/ /i affection i/ 
+[00:11:51.34] medium /d 0:02.44 d/ /i playful i/
+[00:11:53.88] soft /d 0:00.26 d/ /i playful i/ 
+[00:12:20.73] medium /d 0:17.05 d/ /i playful i/
+[00:13:02.01] medium /d 0:02.44 d/ /i playful i/
+[00:13:34.64] medium /d 0:02.79 d/ /i playful reciprocate i/
+[00:13:40.06] medium /d 0:09.88 d/ /i playful i/
+[00:13:56.42] medium /d 0:00.61 d/ /i playful i/
+[00:13:57.64] soft /d 0:31.66 d/ /i playful i/
+[00:14:59.48] medium /d 0:13.38 d/ /i playful i/ 
+[00:15:21.44] hard /d 0:05.86 d/ /i playful i/ 
+[00:15:28.35] medium /d 0:13.55 d/ /i playful disagreement  i/
+[00:16:56.43] medium /d 0:05.33 d/ /i comfort i/
+[00:17:14.89] medium /d 0:19.24 d/ /i playful i/
+[00:17:57.32] medium /d 0:01.48 d/ /i playful i/
+[00:17:59.50] medium /d 0:01.13 d/ /i playful i/
+[00:18:02.39] medium /d 0:01.83 d/ /i playful i/

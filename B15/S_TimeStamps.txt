@@ -1,17 +1,15 @@
-[00:00:36.71] medium /d 0:00.43 d/
-[00:01:02.15] hard /d 0:00.35 d/
-[00:01:05.91] medium /d 0:00.95 d/
-[00:03:47.29] medium /d 0:00.26 d/
-[00:05:12.21] soft /d 0:00.35 d/
-[00:07:44.94] medium /d 0:00.26 d/
-[00:07:51.66] hard /d 0:00.17 d/
-[00:07:53.15] hard /d 0:00.43 d/
-[00:10:56.10] soft /d 0:00.25 d/
-[00:11:28.86] soft /d 0:00.26 d/
-[00:12:04.42] medium /d 0:00.26 d/
-[00:13:33.09] medium /d 0:00.43 d/
-[00:13:34.32] hard /d 0:00.26 d/
-[00:18:13.64] medium /d 0:00.26 d/
-[00:18:27.88] medium /d 0:00.17 d/
-[00:18:29.72] medium /d 0:00.34 d/
-[00:18:31.81] medium /d 0:00.17 d/
+[00:00:31.71] medium /d 0:00.43 d/ /i testing i/
+[00:00:59.15] hard /d 0:00.35 d/ /i testing i/ 
+[00:01:02.91] medium /d 0:00.95 d/ /i testing i/
+[00:03:44.29] medium /d 0:00.26 d/ /i playful i/
+[00:05:09.21] soft /d 0:00.35 d/ /i reciprocation assurance i/
+[00:07:41.94] medium /d 0:00.26 d/ /i reciprocation i/
+[00:07:48.66] hard /d 0:00.17 d/ /i playful i/
+[00:07:50.15] hard /d 0:00.43 d/ /i playful i/
+[00:10:53.10] soft /d 0:00.25 d/ /i reciprocation i/
+[00:11:25.86] soft /d 0:00.26 d/ /i prove point i/
+[00:12:01.42] medium /d 0:00.26 d/ /i reciprocation i/
+[00:13:30.09] medium /d 0:00.43 d/ /i disagreement i/ 
+[00:13:31.32] hard /d 0:00.26 d/ /i disagreement i/ 
+[00:18:10.64] medium /d 0:00.26 d/ /i loving agrement i/
+

@@ -1,0 +1,28 @@
+[00:00:28.65] soft /d 0:00.43 d/ /i testing i/ 
+[00:01:01.41] soft /d 0:04.37 d/ /i testing i/ 
+[00:01:05.95] soft /d 0:00.87 d/ /i testing i/ 
+[00:01:07.43] soft /d 0:18.86 d/ /i testing i/ 
+[00:01:28.14] soft /d 0:03.57 d/ /i testing i/ 
+[00:01:41.77] medium /d 0:01.31 d/ /i testing i/ 
+[00:03:14.80] soft /d 0:00.61 d/ /i loving i/ 
+[00:07:01.04] soft /d 0:02.09 d/ /i make a point i/
+[00:07:09.60] soft /d 0:00.26 d/ /i reciprocate i/ 
+[00:09:21.95] soft /d 0:00.87 d/ /i affection i/ 
+[00:10:09.38] soft /d 0:01.74 d/ /i affection i/ 
+[00:12:00.58] soft /d 0:01.04 d/ /i make a point i/ 
+[00:12:02.42] soft /d 0:00.87 d/ /i make a point i/ 
+[00:13:39.04] soft /d 0:00.17 d/ /i reciprocation i/ 
+[00:13:40.17] soft /d 0:00.17 d/ /i next topic i/ 
+[00:14:45.34] soft /d 0:01.13 d/ /i agreement i/ 
+[00:14:47.87] soft /d 0:00.26 d/ /i agreement i/ 
+[00:14:49.36] soft /d 0:00.52 d/ /i assurance i/ 
+[00:14:51.11] soft /d 0:00.17 d/ /i playful i/ 
+[00:14:55.91] soft /d 0:01.83 d/ /i playful i/
+[00:15:18.71] soft /d 0:01.83 d/ /i playful i/ 
+[00:15:42.30] soft /d 0:17.91 d/ /i testing i/ 
+[00:16:06.41] medium /d 0:01.74 d/ /i testing i/ 
+[00:16:14.19] hard /d 0:05.32 d/ /i playful i/ 
+[00:17:12.98] hard /d 0:00.87 d/ /i playful i/ 
+[00:17:16.39] soft /d 0:00.26 d/ /i playful i/ 
+[00:17:17.79] soft /d 0:00.26 d/ /i playful i/ 
+[00:18:08.63] soft /d 0:01.22 d/ /i playful i/ 

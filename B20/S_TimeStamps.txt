@@ -1,22 +1,14 @@
-[00:00:14.78] hard /d 0:00.69 d/
-[00:00:34.44] hard /d 0:00.26 d/
-[00:00:36.63] hard /d 0:00.70 d/
-[00:00:43.70] hard /d 0:00.87 d/
-[00:00:49.64] medium /d 0:00.34 d/
-[00:00:56.37] hard /d 0:00.95 d/
-[00:01:07.37] medium /d 0:00.70 d/
-[00:01:15.93] hard /d 0:01.65 d/
-[00:02:23.98] hard /d 0:00.52 d/
-[00:03:16.04] soft /d 0:00.52 d/
-[00:03:35.78] hard /d 0:00.52 d/
-[00:04:28.63] hard /d 0:00.43 d/
-[00:04:41.12] medium /d 0:00.35 d/
-[00:05:33.89] hard /d 0:02.70 d/
-[00:06:02.19] hard /d 0:00.70 d/
-[00:06:32.33] hard /d 0:00.35 d/
-[00:07:19.07] hard /d 0:40.35 d/
-[00:09:34.38] hard /d 0:00.26 d/
-[00:10:27.23] hard /d 1:42.12 d/
-[00:14:30.27] hard /d 0:00.26 d/
-[00:14:50.27] hard /d 0:00.61 d/
-[00:15:37.45] medium /d 0:00.34 d/
+[00:02:23.98] hard /d 0:00.52 d/ /i making a point i/
+[00:03:16.04] soft /d 0:00.52 d/ /i comfort i/
+[00:03:35.78] hard /d 0:00.52 d/ /i emphasis i/
+[00:04:28.63] hard /d 0:00.43 d/ /i agreement i/ 
+[00:04:41.12] medium /d 0:00.35 d/ /i playful i/ 
+[00:05:33.89] hard /d 0:02.70 d/ /i playful i/ 
+[00:06:02.19] hard /d 0:00.70 d/ /i assurance i/ 
+[00:06:32.33] hard /d 0:00.35 d/ /i making a point i/
+[00:07:19.07] hard /d 0:40.35 d/ /i emphasis i/ 
+[00:09:34.38] hard /d 0:00.26 d/ /i playful i/ 
+[00:10:27.23] hard /d 1:42.12 d/ /i comfort i/ 
+[00:14:30.27] hard /d 0:00.26 d/ /i playful i/ 
+[00:14:50.27] hard /d 0:00.61 d/ /i reciprocate i/ 
+[00:15:37.45] medium /d 0:00.34 d/ /i agreement i/

@@ -1,38 +1,20 @@
-[00:00:06.64] hard /d 0:00.56 d/
-[00:00:26.14] medium /d 0:00.26 d/
-[00:00:28.71] medium /d 0:00.32 d/
-[00:00:35.31] hard /d 0:00.52 d/
-[00:01:00.03] medium /d 0:00.26 d/
-[00:01:05.01] medium /d 0:00.96 d/
-[00:02:04.95] medium /d 0:00.17 d/
-[00:02:28.71] hard /d 0:00.34 d/
-[00:03:18.86] soft /d 0:00.08 d/
-[00:03:19.73] soft /d 0:00.26 d/
-[00:03:25.93] medium /d 0:00.35 d/
-[00:04:03.59] medium /d 0:00.61 d/
-[00:04:48.67] soft /d 0:00.69 d/
-[00:05:33.84] medium /d 0:00.27 d/
-[00:05:35.67] medium /d 0:00.19 d/
-[00:06:13.34] medium /d 0:00.52 d/
-[00:06:54.84] medium /d 0:00.34 d/
-[00:07:32.67] soft /d 0:00.35 d/
-[00:08:02.90] medium /d 0:00.26 d/
-[00:08:39.61] medium /d 0:00.39 d/
-[00:10:00.17] soft /d 0:00.14 d/
-[00:11:24.59] soft /d 0:00.17 d/
-[00:12:03.03] soft /d 0:00.08 d/
-[00:12:21.21] soft /d 0:00.09 d/
-[00:12:38.69] soft /d 0:00.08 d/
-[00:12:42.88] soft /d 0:00.08 d/
-[00:13:15.91] soft /d 0:00.08 d/
-[00:14:42.08] soft /d 0:00.08 d/
-[00:14:43.56] medium /d 0:00.17 d/
-[00:15:33.89] medium /d 0:00.09 d/
-[00:15:34.85] soft /d 0:00.26 d/
-[00:15:35.90] medium /d 0:00.17 d/
-[00:15:36.87] medium /d 0:00.18 d/
-[00:15:54.69] medium /d 0:00.08 d/
-[00:16:16.54] medium /d 0:00.17 d/
-[00:16:23.27] soft /d 0:00.17 d/
-[00:17:13.17] soft /d 0:00.17 d/
-[00:17:30.99] hard /d 0:00.43 d/
+[00:03:28.86] soft /d 0:00.08 d/ /i loving i/
+[00:03:29.73] soft /d 0:00.26 d/ /i loving i/
+[00:03:35.93] medium /d 0:00.35 d/ /i playful i/
+[00:04:13.59] medium /d 0:00.61 d/ /i turn taking i/
+[00:04:58.67] soft /d 0:00.69 d/ /i making a point i/ 
+[00:05:43.84] medium /d 0:00.27 d/ /i agreement i/ 
+[00:05:45.67] medium /d 0:00.19 d/ /i agreement i/
+[00:06:23.34] medium /d 0:00.52 d/ /i assurance i/ 
+[00:07:04.84] medium /d 0:00.34 d/ /i playful i/ 
+[00:07:42.67] soft /d 0:00.35 d/ /i making a point i/ 
+[00:08:12.90] medium /d 0:00.26 d/ /i affection i/ 
+[00:08:49.61] medium /d 0:00.39 d/ /i next topic i/ 
+[00:10:10.17] soft /d 0:00.14 d/ /i comfort i/ 
+[00:11:34.59] soft /d 0:00.17 d/ /i contemplating i/
+[00:12:13.03] soft /d 0:00.08 d/ /i assurance i/ 
+[00:12:31.21] soft /d 0:00.09 d/ /i playful i/
+[00:12:48.69] soft /d 0:00.08 d/ /i affection i/ 
+[00:12:52.88] soft /d 0:00.08 d/ /i next topic i/
+[00:13:25.91] soft /d 0:00.08 d/ /i loving i/
+[00:14:52.08] soft /d 0:00.08 d/ /i comforting i/ 

@@ -1,0 +1,13 @@
+[00:00:26.91] medium /d 0:01.74 d/ /i testing i/ 
+[00:00:32.76] medium /d 0:00.61 d/ /i testing i/ 
+[00:00:33.72] medium /d 0:00.26 d/ /i testing i/ 
+[00:00:54.07] medium /d 0:02.71 d/ /i testing i/ 
+[00:01:11.45] hard /d 0:03.14 d/ /i testing i/ 
+[00:03:38.46] medium /d 0:00.78 d/ /i emphasis i/ 
+[00:03:39.42] medium /d 0:00.17 d/ /i emphasis i/ 
+[00:17:27.34] hard /d 0:00.96 d/ /i playful i/ 
+[00:17:29.96] hard /d 0:00.17 d/ /i playful i/
+[00:17:30.31] hard /d 0:00.26 d/ /i playful i/ 
+[00:17:30.66] hard /d 0:00.17 d/ /i N/A i/ 
+[00:17:30.92] hard /d 0:00.26 d/ /i N/A i/ 
+[00:17:31.27] hard /d 0:00.17 d/ /i N/A i/ 

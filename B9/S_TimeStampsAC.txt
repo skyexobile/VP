@@ -1,0 +1,9 @@
+[00:00:17.19] soft /d 0:00.52 d/ /i testing i/ 
+[00:00:19.98] medium /d 0:01.56 d/ /i testing i/ 
+[00:01:32.64] medium /d 0:01.04 d/ /i playful i/ 
+[00:04:08.36] soft /d 0:01.48 d/ /i playful i/ 
+[00:09:43.72] soft /d 0:00.61 d/ /i disagreement i/ 
+[00:09:45.03] medium /d 0:01.31 d/ /i disagreement i/ 
+[00:09:48.26] medium /d 0:00.17 d/ /i next topic i/
+[00:16:14.98] soft /d 0:00.43 d/ /i playful i/ 
+[00:16:21.09] soft /d 0:00.43 d/ /i goodbye i/ 
