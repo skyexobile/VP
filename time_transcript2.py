@@ -13,10 +13,10 @@ def process(header,type,df):
         if timeflag is False:
             temptime = df.iloc[i][0]
             if initial is False:
-                ediff = temptime - datetime.timedelta(seconds = 10)
+                ediff = temptime - datetime.timedelta(seconds =7)
                 print( 'edfiff is ', ediff)
             else:
-                ediff = temptime - datetime.timedelta(seconds = 10)
+                ediff = temptime - datetime.timedelta(seconds = 7)
                 initial = False
             t_time=('['+str(ediff)[7:-4]+']')
             print(t_time)
@@ -60,9 +60,9 @@ def csv_reader(header, path, type):
     process(header,type, df2)
     return df2
 
-for i in range(1,15):
+for i in range(10,11):
     print('ID',i)
     header=('../VP/A' +str(i) + '/')
 
     rt_combined = csv_reader(header, 'received_data.csv', 'R')
-    #st_combined = csv_reader(header, 'sent_data.csv', 'S')
+    st_combined = csv_reader(header, 'sent_data.csv', 'S')
