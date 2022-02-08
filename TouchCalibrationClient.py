@@ -241,7 +241,7 @@ def receiveMsg(sock):
             msg = sock.recv(1024).decode('ascii')
             if '**send' in msg:
                 msg = msg[(msg.find('**send')+6):]
-                received.append(msg)
+                #received.append(msg)
                 #print('this is the list: ',received)
             elif '**vtime' in msg:
                 msg = msg[msg.find('**vtime')+8:]
