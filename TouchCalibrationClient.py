@@ -15,7 +15,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 port = 8000
 
 uname = 'PartnerA'
-
+'''
 ip = str(sys.argv[1])
 s.connect((ip, port))
 s.send(uname.encode('ascii'))
@@ -26,13 +26,15 @@ input_serial.baudrate =115200
 input_serial.setDTR(False)
 input_serial.setRTS(False)
 
+print("Connecting to Touch Output")
+
 output_serial = serial.Serial('/dev/cu.usbmodem14201')
 
 output_serial.baudrate =115200
 output_serial.setDTR(False)
 output_serial.setRTS(False)
 
-
+'''
 print("Connected!")
 
 #server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -40,14 +42,19 @@ print("Connected!")
 #IP_address = str(sys.argv[1])
 #Port = int(sys.argv[2])server.connect(("localhost", 5000))
 
+#default touch input thresholds
 soft_value = 100
 medium_value = 500
 hard_value = 1000
+
+
 root = tkin.Tk()
 soft_flag = False
 medium_flag = False
 hard_flag = False
 released_flag = False
+
+
 previous_value = 0
 offset = 0
 touch_record = []
@@ -69,6 +76,8 @@ recv_list= []
 time_list = []
 flag_save_sent = False
 flag_save_recv = False
+
+
 def record():
     global recording_time
     global videoRecording, time_list
@@ -79,10 +88,6 @@ def record():
     	keystroke return
     end tell'''
 
-
-    args = ['2', '2']
-
-
     p = Popen(['osascript', '-'], stdin=PIPE, stdout=PIPE, stderr=PIPE, universal_newlines=True)
     stdout, stderr = p.communicate(scpt)
     recording_time = float(time.time())
@@ -91,8 +96,8 @@ def record():
 
     with open('Data/recordingtime.csv', "a", newline = '\n') as csv_file:
         writer = csv.writer(csv_file, delimiter = '\n')
-        now = datetime.datetime.now()
-        time_list.append(now.strftime("%m-%d-%y %H:%M:%S"))
+        elapsed =  time.time() - recording_time
+        time_list.append(elapsed)
         writer.writerow(time_list)
         csv_file.close()
 
@@ -136,7 +141,7 @@ def set_hard():
     hard_value = input_value
     print("Hard has been defined ", hard_value)
 def save_settings():
-    global soft_value, hard_value, PID_value, medium_value
+    global soft_value, hard_value,  medium_value
 
     print("Your settings have been saved!")
     print("soft is ", soft_value)
@@ -171,7 +176,7 @@ def tighten():
     output_serial.write(str('M').encode())
 def resetout():
     output_serial.write(str('r').encode())
-    print('Reset Complete')
+    print('Reset Output Complete')
 
 def on_closing():
     global clientRunning, flag_save_recv, flag_save_sent
